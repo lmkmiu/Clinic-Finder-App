@@ -10,7 +10,7 @@ import Map from "./component/Map/Map";
 import Comments from "./component/Comments/Comments"
 import Authentication from "./component/Authentication/Authentication";
 
-function App() {
+const App = () => {
 
   return (
     <BrowserRouter>
@@ -42,15 +42,22 @@ function App() {
                     } />
         </Routes>
       </Main>
+      <Right>
+
+      </Right>
     </BrowserRouter>
   );
 }
 const SideDiv = styled.div`
   float: left;
-  width: 25%;
+  width: 15%;
 `
 const Main = styled.div`
   float: left;
-  width: 75%;
+  width: 65%;
+`;
+const Right = styled.div`
+  float: left;
+  width: 20%;
 `;
 export default App;

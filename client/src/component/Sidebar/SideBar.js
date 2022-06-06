@@ -26,8 +26,8 @@ const SideBar = () => {
                     <Logo alt="logo" src={window.location.origin + "/logo.png"} />
                 </Link>
                 <SignInButton onClick={loginHandler}>
-                {isLoggedin ? "Logout" : "Login / Sign Up"}
-            </SignInButton>
+                    {isLoggedin ? "Logout" : "Login / Sign Up"}
+                </SignInButton>
                 <Filter />
             </Div>
             
@@ -40,6 +40,7 @@ const Wrapper = styled.div`
 const Div = styled.div`
     display: flex;
     flex-direction: column;
+    align-items: center;
 `
 const Logo = styled.img`
     width: 80px;
@@ -60,7 +61,7 @@ const SignInButton = styled.button`
   cursor: pointer;
   padding: 0 20px;
   &:hover {
-    background: #626fe6;
+    background: #7DCDCD;
     color: #fff;
   }
 `

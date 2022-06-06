@@ -136,7 +136,7 @@ const Modalwrapper = styled.div`
     justify-content: center;
 `;
 const ModalBackground = styled.div`
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: #CCCCCC;
     width: 100%;
     max-width: 1360px;
     height: 100vh;
@@ -146,7 +146,7 @@ const ModalBackground = styled.div`
 `;
 const Wrapper = styled.div`
     margin-top: 200px;
-    background: #dfebed;
+    background: #7DCDCD;
     width: 800px;
     height: 500px;
     display: flex;
@@ -189,7 +189,7 @@ const CaptionForRegister = styled.span`
     margin-right: 5px;
 `;
 const Register = styled.span`
-    color: #79c2d0;
+    color: #CCCCCC;
     font-weight: 800;
     cursor: pointer;
     &:hover {
@@ -216,7 +216,7 @@ const InputForPassword = styled.input`
 
 const SubmitButton = styled.button`
     text-transform: uppercase;
-    background: #626fe6;
+    background: #CCCCCC;
     margin-bottom: 20px;
     border: none;
     border-radius: 5px;
