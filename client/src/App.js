@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import styled from "styled-components";
 import GlobalStyles from "./GlobalStyles";
 
@@ -9,8 +10,8 @@ import Map from "./component/Map/Map";
 import Comments from "./component/Comments/Comments"
 import Authentication from "./component/Authentication/Authentication";
 
-
 function App() {
+
   return (
     <BrowserRouter>
       <GlobalStyles />
@@ -19,11 +20,26 @@ function App() {
       </SideDiv>
       <Main>
         <Routes>
-          <Route exact path="/" element={<HomePage />} />
-          <Route path="/clinic/:_id" element={<DetailPage />} />
-          <Route path="/map" element={<Map />} />
-          <Route path="/comments/:_id" element={<Comments />} />
-          <Route path="/login" element={<Authentication />} />
+          <Route  exact path="/" 
+                  element={
+                    <HomePage />
+                    } />
+          <Route  path="/clinic/:_id" 
+                  element={
+                    <DetailPage />
+                    } />
+          <Route  path="/map" 
+                  element={
+                      <Map />
+                    } />
+          <Route  path="/comments/:_id" 
+                  element={
+                    <Comments />
+                    } />
+          <Route  path="/login" 
+                  element={
+                    <Authentication />
+                    } />
         </Routes>
       </Main>
     </BrowserRouter>
