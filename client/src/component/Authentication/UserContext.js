@@ -17,21 +17,21 @@ const UserProvider = ({ children }) => {
   const [isLoggedin, setIsLoggedin] = useState(false);
 
   // .POST to save new user info to db users collection
-  useEffect(() => {
-    const fetchDate = async () => {
-      await fetch("/api/new-users", {
-        method: "POST",
-        body: JSON.stringify({ ...newUser }),
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      })
-      .then((res) => res.json())
-      .then((data) => { console.log(data)}) 
-    };
-    fetchDate();
-  }, [newUser]);
+  // useEffect(() => {
+  //   const fetchDate = async () => {
+  //     await fetch("/api/new-users", {
+  //       method: "POST",
+  //       body: JSON.stringify({ ...newUser }),
+  //       headers: {
+  //         Accept: "application/json",
+  //         "Content-Type": "application/json",
+  //       },
+  //     })
+  //     .then((res) => res.json())
+  //     .then((data) => { console.log(data)}) 
+  //   };
+  //   fetchDate();
+  // }, [newUser]);
 
   // .GET to get user info with user id remained in session storage
   useEffect(() => {

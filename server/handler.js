@@ -3,6 +3,7 @@
 const { MongoClient } = require("mongodb");
 require("dotenv").config();
 const { MONGO_URI } = process.env;
+
 const options = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -16,9 +17,8 @@ const { v4: uuidv4 } = require("uuid");
 //get all business
 const getAllBusiness = async (req, res) => {
 
-  const client = new MongoClient(MONGO_URI, options);
-  await client.connect();
   try {
+    await client.connect();
     const db = await client.db("Clinic");
     const data = await db.collection("business").find().toArray();
 

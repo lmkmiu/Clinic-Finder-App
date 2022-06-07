@@ -2,16 +2,15 @@ import { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
   :root {
-    /* --color-cadmium-red: #D80026;
-    --color-alabama-crimson: #AA001E;
-    --color-orange: #F79D00;
-    --color-selective-yellow: #FDBB01;
-    --color-desert-sand: #E3C4A6;*/
+    --color-glitter: #E2F0F9;
+    --color-powder-blue: #b0dde4;
+    --color-green-blue: #286fb4;
+    --color-white: #FFFFFF;
+    --color-fandango-pink: #DF4C73;
     --font-heading: 'Permanent Marker', Arial, Helvetica, sans-serif;
     --font-body: 'Kosugi', Arial, Helvetica, sans-serif; 
     --padding-page: 24px;
   }
-
       *,
     *:before,
     *:after {

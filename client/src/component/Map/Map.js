@@ -1,9 +1,8 @@
 import styled from "styled-components";
 import {    GoogleMap, 
-            useJsApiLoader, 
-            Marker, 
-            InfoWindow } from "@react-google-maps/api";
-import mapStyles from "./mapStyles";
+            useJsApiLoader } from "@react-google-maps/api";
+import { mapStyles } from "./mapStyles";
+import Markers from "./Markers";
 
 // import { formatRelative } from "date-fns";
 // const libraries = [ "places" ];
@@ -41,9 +40,7 @@ const Map = () => {
                 center={center}
                 options={options}
             >
-                <Marker key="001"
-                        position={ {lat: 45.478020, lng: -73.618600} }
-                        />
+                <Markers />
 
             </GoogleMap>
             

@@ -146,7 +146,7 @@ const ModalBackground = styled.div`
 `;
 const Wrapper = styled.div`
     margin-top: 200px;
-    background: #7DCDCD;
+    background: var(--color-powder-blue);
     width: 800px;
     height: 500px;
     display: flex;
@@ -193,7 +193,7 @@ const Register = styled.span`
     font-weight: 800;
     cursor: pointer;
     &:hover {
-        color: pink;
+        color: var(--color-fandango-pink);
     }
 `;
 

@@ -1,6 +1,7 @@
 "use strict";
 
 const express = require("express");
+const morgan = require("morgan");
 
 const {
     getAllBusiness,
@@ -9,23 +10,15 @@ const {
 const PORT = 8000;
 
 express()
-  .use(function (req, res, next) {
-    res.header(
-      "Access-Control-Allow-Methods",
-      "OPTIONS, HEAD, GET, PUT, POST, DELETE"
-    );
-    res.header(
-      "Access-Control-Allow-Headers",
-      "Origin, X-Requested-With, Content-Type, Accept"
-    );
-    next();
-  })
+  .use(morgan("tiny"))
   .use(express.json())
-  .use(express.urlencoded({ extended: false }))
-  .use("/", express.static(__dirname + "/"))
+  
+  .use(express.static("public"))
 
-  // geting all data
+  // getting all data
   .get("/api/all-business", getAllBusiness)
+  // filter result
+  .get("")
 
 
   // this is our catch all endpoint.
