@@ -43,7 +43,7 @@ const App = () => {
         </Routes>
       </Main>
       <Right>
-
+        
       </Right>
     </BrowserRouter>
   );

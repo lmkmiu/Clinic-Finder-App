@@ -22,8 +22,8 @@ const Map = () => {
         height: "700px"
     }
     const center = {
-        lat : 45.501690,
-        lng: -73.567253
+        lat : 45.5136221588719,
+        lng: -73.68259600519754
     }
     const options = {
         styles: mapStyles,

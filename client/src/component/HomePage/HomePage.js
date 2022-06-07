@@ -1,5 +1,6 @@
 import { useContext, useEffect } from "react";
 import { AppContext } from "../../AppContext.js";
+import Map from "../Map/Map"
 
 const HomePage = () => {
 
@@ -8,16 +9,10 @@ const { actions: {
         } } = useContext(AppContext)
 
     useEffect(() => {
-        fetch("/api/all-business", {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json"
-            }
-          })
+        fetch("/api/all-business")
         
             .then((res) => res.json())
             .then((data) => { 
-                console.log(data)
                 getHomepageData(data.data)
             })
             .catch((error) => {
@@ -27,7 +22,7 @@ const { actions: {
 
     return (
         <>
-        <h1>HomePage</h1>
+        <Map />
         </>
     )
 }

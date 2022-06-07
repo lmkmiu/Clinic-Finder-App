@@ -4,7 +4,8 @@ const express = require("express");
 const morgan = require("morgan");
 
 const {
-    getAllBusiness,
+  getAllBusiness,
+    // filterBusiness,
 } = require("./handler");
 
 const PORT = 8000;
@@ -12,13 +13,11 @@ const PORT = 8000;
 express()
   .use(morgan("tiny"))
   .use(express.json())
-  
-  .use(express.static("public"))
 
   // getting all data
   .get("/api/all-business", getAllBusiness)
   // filter result
-  .get("")
+  // .get("/api/business", filterBusiness)
 
 
   // this is our catch all endpoint.

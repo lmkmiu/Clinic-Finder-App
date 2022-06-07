@@ -19,9 +19,16 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 homePageLoad: true,
-                data: action.data
+                homePageData: action.data
             }
         } 
+        case "get-filtered-data" : {
+            return {
+                ...state,
+                mapPageLoad: true,
+                mapPageData: action.data
+            }
+        }
         
         default: 
             throw new Error(`Error`);
@@ -34,7 +41,13 @@ export const AppProvider = ({ children }) => {
     const getHomepageData = (data) => {
         dispatch({
             type: "get-homepage-data",
-            ...data,
+            data
+        })
+    }
+    const getfilteredData = (data) => {
+        dispatch({
+            type: "get-filtered-data",
+            ...data
         })
     }
 
@@ -44,6 +57,7 @@ export const AppProvider = ({ children }) => {
             state,
             actions: {
                 getHomepageData,
+                getfilteredData
             }
         }}>
             {children}
