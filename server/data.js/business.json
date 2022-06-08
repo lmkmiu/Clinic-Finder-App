@@ -6,11 +6,12 @@
         "phone": "(514) 369-8445",
         "geolocation": {"lat":45.47739141289993, "lng": -73.59935053789067},
         "acupuncturist": ["Miu Kuen Lee", "Alexi Schmidt"],
-        "physiotherapist": [],
-        "chiropractor": [],
-        "osteopath": [],
-        "rating": 3,
-        "comments": []
+        "physiotherapist": null,
+        "chiropractor": null,
+        "osteopath": null,
+        "rating": 5,
+        "comments": [{"id": "09876543", "user": "Hello Kitty", "msg": "Alexi helped me a lot with my muted mouth."},
+                    {"id": "09827738", "user": "Elsa", "msg": "I did acupuncture for a month. And now the the cold never bother me anymore."}]
     },
     {
         "_id": 100101,
@@ -19,11 +20,12 @@
         "phone": "(514) 954-1099",
         "geolocation": {"lat":45.50366298185794, "lng": -73.56747877307862},
         "acupuncturist": ["Natalie Martin"],
-        "physiotherapist": [],
+        "physiotherapist": null,
         "chiropractor": ["Antoine Dauphin", "Sonia Bachir Cherif", "Felix Shum"],
-        "osteopath": [],
-        "rating": 3,
-        "comments": []
+        "osteopath": null,
+        "rating": 4,
+        "comments": [{"id": "09876047", "user": "Quasimodo", "msg": "Felix help my hunchback, amazing!"},
+                    {"id": "09827294", "user": "Gollum", "msg": "I feel like I am taller after the treatment and now I can go get the ring again."}]
       },
       {
         "_id": 100102,
@@ -32,11 +34,11 @@
         "phone": "(438) 375-6501",
         "geolocation": {"lat":45.50025969900768, "lng": -73.57018420205306},
         "acupuncturist": ["Rami Bustami"],
-        "physiotherapist": [],
-        "chiropractor": [],
+        "physiotherapist": null,
+        "chiropractor": null,
         "osteopath": ["Pierre Gagnon"],
         "rating": 3,
-        "comments": []
+        "comments": null
       },
       {
         "_id": 100103,
@@ -44,12 +46,13 @@
         "location": "2100 Av. de Marlowe, Montréal, QC H4A 3L5",
         "phone": "(514) 488-3131",
         "geolocation": {"lat":45.474588599688516, "lng": -73.60667439008529},
-        "acupuncturist": [],
+        "acupuncturist": null,
         "physiotherapist": ["Douglas Dongmo" ],
-        "chiropractor": [],
+        "chiropractor": null,
         "osteopath": ["Ralph Tohmé"],
-        "rating": 3,
-        "comments": []
+        "rating": 2,
+        "comments": [{"id": "09876090", "user": "Doraemon", "msg": "I wish I have a time machine and skip the waiting time."},
+          {"id": "09827224", "user": "Cruella", "msg": "I've spent 5 mins in the waiting room. It's TOO lONG!!!! I am not coming back!"}]
       },
       {
         "_id": 100104,
@@ -57,12 +60,12 @@
         "location": "4950 Queen Mary Rd #310, Montreal, Quebec H3W 1X3",
         "phone": "(514) 419-5737",
         "geolocation": {"lat":45.48630921646418, "lng": -73.6264209500111},
-        "acupuncturist": [],
-        "physiotherapist": [],
+        "acupuncturist": null,
+        "physiotherapist": null,
         "chiropractor": ["Natasha Hayden"],
-        "osteopath": [],
-        "rating": 3,
-        "comments": []
+        "osteopath": null,
+        "rating": 5,
+        "comments": null
       },
       {
         "_id": 100105,
@@ -70,12 +73,12 @@
         "location": "1050 Rue Sherbrooke O, Montréal, QC H3A 2R6",
         "phone": "(514) 845-2233",
         "geolocation": {"lat":45.50207379876539, "lng": -73.57601590191389},
-        "acupuncturist": [],
+        "acupuncturist": null,
         "physiotherapist": ["Geogre Demirakos"],
-        "chiropractor": [],
+        "chiropractor": null,
         "osteopath": ["Ghassen Abid"],
-        "rating": 3,
-        "comments": []
+        "rating": 4,
+        "comments": null
       },
       {
         "_id": 100106,
@@ -84,11 +87,11 @@
         "phone": "(514) 747-2822",
         "geolocation": {"lat":45.49610901407376, "lng": -73.6256373656377},
         "acupuncturist": ["Thuy Nguyens"],
-        "physiotherapist": [],
-        "chiropractor": [],
-        "osteopath": [],
-        "rating": 3,
-        "comments": []
+        "physiotherapist": null,
+        "chiropractor": null,
+        "osteopath": null,
+        "rating": 5,
+        "comments": [{"id": "09879165", "user": "Peppa Pig", "msg": "Thuy is so nice even I am a little piggy, oink!"}]
       },
       {
         "_id": 100107,
@@ -97,11 +100,11 @@
         "phone": "(514) 419-6227",
         "geolocation": {"lat":45.54011173479283, "lng": -73.63028005975531},
         "acupuncturist": ["Chantal Hausler"],
-        "physiotherapist": [],
-        "chiropractor": [],
-        "osteopath": [],
-        "rating": 3,
-        "comments": []
+        "physiotherapist": null,
+        "chiropractor": null,
+        "osteopath": null,
+        "rating": 5,
+        "comments": null
       },
       {
         "_id": 100108,
@@ -111,10 +114,10 @@
         "geolocation": {"lat":45.46933521730892, "lng": -73.78836142667414},
         "acupuncturist": ["Marianne Boutin"],
         "physiotherapist": ["Pascal Séguin", "Florence Charbonneau-Dufresne", "Daphne Bilodeau", "Josie Pilon"],
-        "chiropractor": [],
+        "chiropractor": null,
         "osteopath": ["Asrafil Goolam-Hossen"],
-        "rating": 3,
-        "comments": []
+        "rating": 5,
+        "comments": [{"id": "09876920", "user": "Donald Duck", "msg": "My voice is wayyy better after oetsopath treatment, quack quack!"}]
       },
       {
         "_id": 100109,
@@ -124,10 +127,10 @@
         "geolocation": {"lat":45.473849672736854, "lng": -73.62465325924914},
         "acupuncturist": ["Nadège Agostini", "Rui Huang", "Achille Volpi"],
         "physiotherapist": ["Alexis M. Léveillé", "Teresa Rassenti", "Magali Scheubel"],
-        "chiropractor": [],
+        "chiropractor": null,
         "osteopath": ["Aurore Barea", "Alain Barriol", "Stephen Devlin", "Maïly Dubeau"],
         "rating": 3,
-        "comments": []
+        "comments": null
       },
       {
         "_id": 100110,
@@ -138,9 +141,9 @@
         "acupuncturist": ["Wei Li"],
         "physiotherapist": ["Nurit Roth King", "Francis Zavala"],
         "chiropractor": ["Thanh-My Patricia Ho"],
-        "osteopath": [],
-        "rating": 3,
-        "comments": []
+        "osteopath": null,
+        "rating": 4,
+        "comments": null
       },
       {
         "_id": 100111,
@@ -148,12 +151,12 @@
         "location": "1303 Greene Ave #305, Montreal, Quebec H3Z 2A7",
         "phone": "(438) 274-3357",
         "geolocation": {"lat":45.48724143638363, "lng": -73.58999276130608},
-        "acupuncturist": [],
+        "acupuncturist": null,
         "physiotherapist": ["Steve Procter"],
-        "chiropractor": [],
-        "osteopath": [],
-        "rating": 3,
-        "comments": []
+        "chiropractor": null,
+        "osteopath": null,
+        "rating": 4,
+        "comments": null
       },
       {
         "_id": 100112,
@@ -161,12 +164,12 @@
         "location": "6015 Rue Louis-Hémon, Montréal, QC H2G 2K5",
         "phone": "(514) 212-9482",
         "geolocation": {"lat":45.545386488624764, "lng": -73.58970259105966},
-        "acupuncturist": [],
-        "physiotherapist": [],
-        "chiropractor": [],
+        "acupuncturist": null,
+        "physiotherapist": null,
+        "chiropractor": null,
         "osteopath": ["Alexis Martin", "Julia Duplessy", "Charlotte Coulot" ],
         "rating": 3,
-        "comments": []
+        "comments": null
       },
       {
         "_id": 100113,
@@ -174,12 +177,12 @@
         "location": "507 Place d'Armes SS 100, Montreal, Quebec H2Y 2W8",
         "phone": "",
         "geolocation": {"lat":45.50520506659159, "lng": -73.55686121648024},
-        "acupuncturist": [],
-        "physiotherapist": [],
+        "acupuncturist": null,
+        "physiotherapist": null,
         "chiropractor": ["Lydia Ouldchikh"],
-        "osteopath": [],
-        "rating": 3,
-        "comments": []
+        "osteopath": null,
+        "rating": 5,
+        "comments": null
       },
       {
         "_id": 100114,
@@ -188,11 +191,11 @@
         "phone": "(514) 387-4242",
         "geolocation": {"lat":45.54617223680723, "lng": -73.66611694479839},
         "acupuncturist": ["Violaine Fournier"],
-        "physiotherapist": [],
+        "physiotherapist": null,
         "chiropractor": ["Christine St-Louis"],
-        "osteopath": [],
-        "rating": 3,
-        "comments": []
+        "osteopath": null,
+        "rating": 5,
+        "comments": null
       },
       {
         "_id": 100115,
@@ -200,12 +203,12 @@
         "location": "1100 Av. Beaumont Suite 403, Mont-Royal, QC H3P 3H5",
         "phone": "(514) 735-2789",
         "geolocation": {"lat":45.5230108974344, "lng": -73.6228928125595},
-        "acupuncturist": [],
-        "physiotherapist": [],
+        "acupuncturist": null,
+        "physiotherapist": null,
         "chiropractor": ["Synergie Laënnec"],
-        "osteopath": [],
+        "osteopath": null,
         "rating": 3,
-        "comments": []
+        "comments": null
       },
       {
         "_id": 100116,
@@ -214,11 +217,11 @@
         "phone": "(514) 507-7555",
         "geolocation": {"lat":45.5189295572797, "lng": -73.59366790048242},
         "acupuncturist": ["Larissa B. Dos Santos"],
-        "physiotherapist": [],
+        "physiotherapist": null,
         "chiropractor": ["Annie Lalonde", "Laurence Delisle", "Marc-Antoine Laquerre"],
         "osteopath": ["Julie Couture-Tétreault", "Thibault Cavrois", "Maude Cavanagh"],
-        "rating": 3,
-        "comments": []
+        "rating": 4,
+        "comments": null
       },
       {
         "_id": 100117,
@@ -226,11 +229,11 @@
         "location": "1465 Rue Bélanger Est, Montréal, QC H2G 1A5",
         "phone": "(514) 728-2264",
         "geolocation": {"lat":45.54482791934938, "lng": -73.60515521087345},
-        "acupuncturist": [],
+        "acupuncturist": null,
         "physiotherapist": ["Cara Lee", "Brittany Frank"],
-        "chiropractor": [],
-        "osteopath": [],
-        "rating": 3,
-        "comments": []
+        "chiropractor": null,
+        "osteopath": null,
+        "rating": 2,
+        "comments": null
       }
 ]

@@ -21,17 +21,15 @@ const Filter = () => {
     const cat = filtered.filter((item) => {
         return item === "acupuncturist" || item === "chiropractor" || item === "physiotherapist" || item === "osteopath"
     })
-
     const rating = filtered.filter((item) => {
-        return item === "oneStar" || item === "twoStars" || item === "threeStars" || item === "fourStarts" || item === "fiveStars"
+        return item === "oneStar" || item === "twoStars" || item === "threeStars" || item === "fourStars" || item === "fiveStars"
     })
 
     // fetch data every time checkbox is selected or unselected
     useEffect(() => {
-        fetch(`/api/business?cat=${cat}&rating=${rating}`)
+        fetch(`/api/business?cat=${JSON.stringify(cat)}&rating=${JSON.stringify(rating)}`) //
             .then((res) => res.json())
             .then((data) => {
-                console.log(data)
                 getfilteredData(data.data);
             })
             .catch((error) => {

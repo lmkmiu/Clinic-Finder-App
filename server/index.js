@@ -5,7 +5,9 @@ const morgan = require("morgan");
 
 const {
   getAllBusiness,
-    // filterBusiness,
+    filterBusiness,
+    getSingleBusiness,
+    addNewUsers
 } = require("./handler");
 
 const PORT = 8000;
@@ -17,7 +19,12 @@ express()
   // getting all data
   .get("/api/all-business", getAllBusiness)
   // filter result
-  // .get("/api/business", filterBusiness)
+  .get("/api/business", filterBusiness)
+  // get single business
+  .get("/api/business/:id", getSingleBusiness)
+  // posting comments
+  // adding new users
+  .post("/api/new-users", addNewUsers)
 
 
   // this is our catch all endpoint.

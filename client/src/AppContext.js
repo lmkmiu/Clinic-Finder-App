@@ -3,10 +3,11 @@ import { createContext, useReducer } from "react";
 export const AppContext = createContext(null);
 
 const initialState = {
-    homePageLoad: false,
+    homePageLoad: null,
     homePageData: null,
-    mapPageLoad : false,
-    mapPageData: [],
+    filterLoad : null,
+    filterData: null,
+    selectedClinic: null,
     commentsLoad: false,
     commentsData: [],
 }
@@ -18,15 +19,21 @@ const reducer = (state, action) => {
         case "get-homepage-data" : {
             return {
                 ...state,
-                homePageLoad: true,
+                homePageLoad: "HomeLoaded",
                 homePageData: action.data
             }
         } 
         case "get-filtered-data" : {
             return {
                 ...state,
-                mapPageLoad: true,
-                mapPageData: action.data
+                filterLoad: "filterLoad",
+                filterData: action.data
+            }
+        }
+        case "select-clinic" : {
+            return {
+                ...state,
+                selectedClinic: action.data
             }
         }
         
@@ -47,7 +54,13 @@ export const AppProvider = ({ children }) => {
     const getfilteredData = (data) => {
         dispatch({
             type: "get-filtered-data",
-            ...data
+            data
+        })
+    }
+    const selectClinic = (data) => {
+        dispatch({
+            type: "select-clinic",
+            data
         })
     }
 
@@ -57,7 +70,8 @@ export const AppProvider = ({ children }) => {
             state,
             actions: {
                 getHomepageData,
-                getfilteredData
+                getfilteredData, 
+                selectClinic,
             }
         }}>
             {children}

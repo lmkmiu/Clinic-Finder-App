@@ -4,38 +4,35 @@ import { useContext, useState } from "react";
 import { AppContext } from "../../AppContext";
 
 const Markers = () => {
-    const [ selected, setSelected ] = useState(null)
-    const { state: { homePageLoad, homePageData }} = useContext(AppContext)
-    
+    const { state: { homePageLoad, homePageData, filterLoad, filterData, selectedClinic },
+            actions: { selectClinic }} = useContext(AppContext)
+
     return (
         <>
-        {homePageLoad ? (
-            homePageData.map((place)=> {
-            return(
-                <>
+        {filterLoad ? (
+            filterData.map(place => (
+            
             <Marker key={place._id}
-                    position={ {lat: place.geolocation.lat, 
+                    position={{ lat: place.geolocation.lat, 
                                 lng: place.geolocation.lng }}
-                    onClick={()=> setSelected("clicked")}
+                    onClick={()=> selectClinic(place)}
                     icon={{ url: "/marker.png",
                             scaledSize: new window.google.maps.Size(30,30)}}
                     animation={window.google.maps.Animation.DROP}
-                            />
+                            />))): <h1>loading</h1>}
             
-            {selected ? (
-                <InfoWindow position={{ lat: place.geolocation.lat, 
-                                        lng: place.geolocation.lng }}
-                            onCloseClick={()=> setSelected(null)}>
+            {selectedClinic && (
+                <InfoWindow key={Math.random() * selectedClinic._id}
+                            position={{ lat: selectedClinic.geolocation.lat, 
+                                        lng: selectedClinic.geolocation.lng }}
+                            onCloseClick={()=> selectClinic(null)}
+                            >
                     <div>
-                        <p>{place.Name}</p>
-                        <p>{place.phone}</p>
+                        <p>{selectedClinic.Name}</p>
                     </div>
                 </InfoWindow>
-            ): null}
-            </>)
-        })
-        ): <h1>loading</h1>
-    }
+            )}
+        
     </>)
 }
 

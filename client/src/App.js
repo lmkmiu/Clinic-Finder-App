@@ -28,14 +28,6 @@ const App = () => {
                   element={
                     <DetailPage />
                     } />
-          <Route  path="/map" 
-                  element={
-                      <Map />
-                    } />
-          <Route  path="/comments/:_id" 
-                  element={
-                    <Comments />
-                    } />
           <Route  path="/login" 
                   element={
                     <Authentication />
@@ -43,7 +35,7 @@ const App = () => {
         </Routes>
       </Main>
       <Right>
-        
+        <Comments />
       </Right>
     </BrowserRouter>
   );

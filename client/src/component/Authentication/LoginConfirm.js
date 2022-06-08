@@ -11,7 +11,7 @@ const LoginConfirm = ({ user }) => {
       }}
     >
       <GreetingImage src="" alt="logIn Confirm Pic" />
-      <GreetingMessage>Go to shop</GreetingMessage>
+      <GreetingMessage>Start looking for Clinic</GreetingMessage>
     </ContinueToWatchButton>
   );
 };
@@ -40,8 +40,8 @@ const GreetingMessage = styled.span`
   bottom: 150px;
   left: 340px;
   font-size: 1.5rem;
-  color: #dfebed;
+  color: var(--color-green-blue);
   &:hover {
-    color: #c9356c;
+    color: var(--color-fandango-pink);
   }
 `;
