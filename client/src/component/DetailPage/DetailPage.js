@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSyringe } from '@fortawesome/free-solid-svg-icons'
+import { faSyringe, faPersonCane, faWalking, faHandDots } from '@fortawesome/free-solid-svg-icons'
+
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import SingleMap from "../Map/SingleMap.js"
@@ -41,14 +42,43 @@ const DetailPage = () => {
                     </p>
                     {clinic.acupuncturist && (
                         clinic.acupuncturist.map((item) => {
-                            return (<>
+                            return (<div>
                                 <FontAwesomeIcon    key={Math.random() * clinic._id}
                                                     icon={faSyringe} />
-                                <p  key={Math.random() * clinic._id}>
+                                <span  key={Math.random() * clinic._id}>
                                     {item}
-                                </p>
-                            </>)
-                        })
+                                </span>
+                            </div>)})
+                    )}
+                    {clinic.physiotherapist && (
+                        clinic.physiotherapist.map((item) => {
+                            return (<div>
+                                <FontAwesomeIcon    key={Math.random() * clinic._id}
+                                                    icon={faWalking} />
+                                <span  key={Math.random() * clinic._id}>
+                                    {item}
+                                </span>
+                            </div>)})
+                    )}
+                    {clinic.chiropractor && (
+                        clinic.chiropractor.map((item) => {
+                            return (<div>
+                                <FontAwesomeIcon    key={Math.random() * clinic._id}
+                                                    icon={faPersonCane} />
+                                <span  key={Math.random() * clinic._id}>
+                                    {item}
+                                </span>
+                            </div>)})
+                    )}
+                    {clinic.osteopath && (
+                        clinic.osteopath.map((item) => {
+                            return (<div>
+                                <FontAwesomeIcon    key={Math.random() * clinic._id}
+                                                    icon={faHandDots} />
+                                <span  key={Math.random() * clinic._id}>
+                                    {item}
+                                </span>
+                            </div>)})
                     )}
                 </Right>
             
