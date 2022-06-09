@@ -118,9 +118,8 @@ const getSingleBusiness = async (req, res) => {
 //////////////////////////////////////////////////////////////////
 // adding new users
 const addNewUsers = async (req, res) => {
-  const { email, password, _id } = req.body;
-  const newUser = { email, password, _id, orderId: [] };
-  console.log(email)
+  const { email, password, _id, username } = req.body;
+  const newUser = { email, password, _id, username };
   try {
     await client.connect();
     const db = client.db("Clinic");
@@ -143,10 +142,33 @@ const addNewUsers = async (req, res) => {
   }
   client.close();
 };
+//////////////////////////////////////////////////////////////////
+// get Single user for sideBar username
+const getSingleUser = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    await client.connect();
+    const db = await client.db("Clinic");
+    const data = await db.collection("users").findOne({ _id: id});
+      console.log(data)
+      res.status(200).json({
+        status: 200,
+        data: data,
+      });
+  } catch (err) {
+      res.status(400).json({
+        status: 400,
+        message: "something wrong",
+      });
+  }
+  client.close();
+};
 
 module.exports = {
     getAllBusiness,
     filterBusiness,
     getSingleBusiness,
-    addNewUsers
+    addNewUsers,
+    getSingleUser
   };

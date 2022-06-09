@@ -12,10 +12,11 @@ import {
 import LoginConfirm from "./LoginConfirm"; 
 
 const Authentication = () => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [email, setEmail] = useState(null);
+    const [password, setPassword] = useState(null);
     const [isSignup, setIsSignup] = useState(true);
-    const { currentUser, 
+    const [username, setUsername] = useState(null)
+    const { newUser, 
             setCurrentUser, 
             setNewUser,    
             isLoggedin, 
@@ -30,6 +31,21 @@ const Authentication = () => {
     const isSignupToggleHandler = () => {
         setIsSignup(!isSignup);
     };
+    // .POST to save new user info to mongoDb users collection
+        useEffect(() => {
+            const fetchDate = async () => {
+                await fetch("/api/new-users", {
+                            method: "POST",
+                            body: JSON.stringify({ ...newUser }),
+                            headers: {  Accept: "application/json",
+                                                "Content-Type": "application/json",
+                                    },
+                            })
+                    .then((res) => res.json())
+                    .then((data) => { console.log(data)}) 
+                };
+            fetchDate();
+        }, [newUser]);
 
   // **************************************
   // Basic functions for Authentication
@@ -42,15 +58,18 @@ const Authentication = () => {
     // Apart from that, we will grap user info to use our own db
     // And when user successfully sign up, the user will be logged in automatically.
         e.preventDefault();
-    try {
-        const result = await createUserWithEmailAndPassword(
-            auth,
-            email,
-            password
-        );
+        
+        try {
+            const result = await createUserWithEmailAndPassword(
+                auth,
+                email,
+                password,
+                username
+                );
+                
+        setNewUser({ email, password, _id: result.user.uid, username });
+        setCurrentUser({ email, password, _id: result.user.uid, username });
 
-        setNewUser({ email, password, _id: result.user.uid });
-        setCurrentUser({ email, password, _id: result.user.uid });
 
       // Save user id into session storage for keeping user login state
         await window.sessionStorage.setItem("userId", result.user.uid);
@@ -66,6 +85,7 @@ const Authentication = () => {
         }
     };
 
+// handler for logIn 
     const loginHandler = async (e) => {
         e.preventDefault();
     try {
@@ -86,7 +106,7 @@ const Authentication = () => {
 
 
 return (
-    <Modalwrapper>
+    <BigWrapper>
         <ModalBackground>
         <Wrapper>
             {isLoggedin && <LoginConfirm user={email} />}
@@ -94,7 +114,7 @@ return (
             <LoginContentWrapper>
                 <Form onSubmit={isSignup ? loginHandler : signupHandler}>
                     <CaptionForGreeting>
-                        welcome to Bonne Santé 
+                        Welcome to Bonne Santé 
                     </CaptionForGreeting>
 
                     {isSignup && (
@@ -106,19 +126,24 @@ return (
                             </Register>
                         </OptionsWrapper>
                     )}
-
-                    <InputForEmail  onChange={(e) => setEmail(e.target.value)}
+                    <Input  onChange={(e) => setEmail(e.target.value)}
                                     ref={inputRef}
                                     type="email"
                                     placeholder="Email"
                                     required
                     />
-
-                    <InputForPassword   onChange={(e) => setPassword(e.target.value)}
+                    <Input   onChange={(e) => setPassword(e.target.value)}
                                         type="password"
                                         required
                                         placeholder="Password"
                     />
+                    <div disabled={isSignup? true: false}>
+                        <Input  onChange={(e) => setUsername(e.target.value)}
+                                    type="username"
+                                    
+                                    placeholder="Username"
+                        />
+                    </div>
                     <SubmitButton>
                         {isSignup ? "login now" : "Sign up now"}
                     </SubmitButton>
@@ -126,12 +151,12 @@ return (
             </LoginContentWrapper>
         </Wrapper>
         </ModalBackground>
-    </Modalwrapper>
+    </BigWrapper>
 )
 };
 
 
-const Modalwrapper = styled.div`
+const BigWrapper = styled.div`
     display: flex;
     justify-content: center;
 `;
@@ -154,7 +179,6 @@ const Wrapper = styled.div`
     border-radius: 5px;
     box-shadow: 0 4px 6px rgb(32 33 36 / 28%);
 `;
-
 const LoginContentWrapper = styled.div`
     padding: 30px;
     display: flex;
@@ -164,7 +188,6 @@ const LoginContentWrapper = styled.div`
     width: 100%;
     position: relative;
 `;
-
 const Form = styled.form`
     display: flex;
     flex-direction: column;   
@@ -196,8 +219,7 @@ const Register = styled.span`
         color: var(--color-fandango-pink);
     }
 `;
-
-const InputForEmail = styled.input`
+const Input = styled.input`
     margin-bottom: 10px;
     border: none;
     border-radius: 5px;
@@ -205,15 +227,6 @@ const InputForEmail = styled.input`
     height: 30px;
     width: 18rem;
 `;
-const InputForPassword = styled.input`
-    margin-bottom: 10px;
-    border: none;
-    border-radius: 5px;
-    padding: 0 10px;
-    height: 30px;
-    width: 18rem;
-`;
-
 const SubmitButton = styled.button`
     text-transform: uppercase;
     background: var(--color-green-blue);

@@ -3,6 +3,7 @@ import {    GoogleMap,
             useJsApiLoader } from "@react-google-maps/api";
 import { mapStyles } from "./mapStyles";
 import Markers from "./Markers";
+import Comments from "../Comments/Comments"
 
 // import { formatRelative } from "date-fns";
 // const libraries = [ "places" ];
@@ -18,8 +19,15 @@ const Map = () => {
     if (!isLoaded) return "Loading Maps"; 
 
     const mapContainerStyle = {
-        width: "700px",
-        height: "700px"
+        height: 700, 
+        width: '100%', 
+        display: 'flex', 
+        flexFlow: 'row nowrap', 
+        justifyContent: 'center', 
+        padding: 0,
+        border: "4px solid var(--color-powder-blue)",
+        borderRadius: "10px",
+        boxShadow: "0 4px 6px rgb(32 33 36 / 28%)"
     }
     const center = {
         lat : 45.5136221588719,
@@ -33,7 +41,8 @@ const Map = () => {
     
     return (
         <Div>
-            <h1>Clinic Finder</h1>
+        <Left>
+            <H1>Clinic Finder</H1>
             <GoogleMap
                 mapContainerStyle={mapContainerStyle}
                 zoom={11}
@@ -41,18 +50,27 @@ const Map = () => {
                 options={options}
             >
                 <Markers />
-
             </GoogleMap>
-            
-        </Div>
-    )
+        </Left>
+        
+        <Comments />
+        
+    </Div>)
 }
-
 const Div = styled.div`
-    margin: 25px;
+    display: flex;
+`
+const Left = styled.div`
+    padding: 25px;
+    width: 70%;
+    margin-left: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
+`
+const H1 = styled.h1`
+    padding: 25px;
+    font-size: 30px;
 `
 
     export default Map

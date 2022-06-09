@@ -34,22 +34,16 @@ const App = () => {
                     } />
         </Routes>
       </Main>
-      <Right>
-        <Comments />
-      </Right>
     </BrowserRouter>
   );
 }
 const SideDiv = styled.div`
   float: left;
-  width: 15%;
+  width: 20%;
 `
 const Main = styled.div`
   float: left;
-  width: 65%;
+  width: 80%;
 `;
-const Right = styled.div`
-  float: left;
-  width: 20%;
-`;
+
 export default App;

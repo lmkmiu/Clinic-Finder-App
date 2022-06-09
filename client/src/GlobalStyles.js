@@ -5,7 +5,6 @@ export default createGlobalStyle`
     --color-glitter: #E2F0F9;
     --color-powder-blue: #b0dde4;
     --color-green-blue: #286fb4;
-    --color-white: #FFFFFF;
     --color-fandango-pink: #DF4C73;
     --font-heading: 'Permanent Marker', Arial, Helvetica, sans-serif;
     --font-body: 'Kosugi', Arial, Helvetica, sans-serif; 

@@ -15,8 +15,15 @@ const SingleMap = ({clinic}) => {
     if (!isLoaded) return "Loading Maps"; 
 
     const mapContainerStyle = {
-        width: "400px",
-        height: "400px"
+        height: 400, 
+        width: 400, 
+        display: 'flex', 
+        flexFlow: 'row nowrap', 
+        justifyContent: 'center', 
+        padding: 0,
+        border: "4px solid var(--color-powder-blue)",
+        borderRadius: "10px",
+        boxShadow: "0 4px 6px rgb(32 33 36 / 28%)"
     }
     const center = {
         lat : clinic.geolocation.lat,
@@ -29,29 +36,25 @@ const SingleMap = ({clinic}) => {
     }
     
     return (
-        <Div>
+        <Wrapper>
             <GoogleMap
                 mapContainerStyle={mapContainerStyle}
                 zoom={14}
                 center={center}
                 options={options}
             >
-            <Marker key={clinic._id}
+                <Marker key={clinic._id}
                     position={{ lat: clinic.geolocation.lat, 
                                 lng: clinic.geolocation.lng }}
                     animation={window.google.maps.Animation.DROP}
-            />
+                />
             </GoogleMap>
             
-        </Div>
+        </Wrapper>
     )
 }
 
-const Div = styled.div`
-    margin: 25px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+const Wrapper = styled.div`
 `
 
     export default SingleMap

@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSyringe, faPersonCane, faWalking, faHandDots } from '@fortawesome/free-solid-svg-icons'
+import { faLocationDot, faPhone } from '@fortawesome/free-solid-svg-icons'
 
 import styled from "styled-components";
 import { useEffect, useState } from "react";
@@ -24,76 +24,105 @@ const DetailPage = () => {
     }, [id])
     
     return (
-        <Div >
+        <Wrapper >
             {loaded ? (
                 <>
-                <Left>
+                <div>
                     <SingleMap clinic={clinic} /> 
-                </Left>
+                </div>
                 <Right>
-                    <h1 key={Math.random() * clinic._id}>
+                    <H1 key={Math.random() * clinic._id}>
                         {clinic.Name}
-                    </h1>
-                    <h2 key={Math.random() * clinic._id}>
-                        {clinic.phone}
-                    </h2>
-                    <p key={Math.random() * clinic._id}>
-                        {clinic.location}
-                    </p>
-                    {clinic.acupuncturist && (
+                    </H1>
+                    <InfoDiv>
+                        <FontAwesomeIcon icon={faPhone} /> 
+                        <Info key={Math.random() * clinic._id}>
+                            {clinic.phone}
+                        </Info>
+                    </InfoDiv>
+                    <InfoDiv>
+                        <FontAwesomeIcon icon={faLocationDot} />
+                        <Info key={Math.random() * clinic._id}>
+                            {clinic.location}
+                        </Info>
+                    </InfoDiv>
+                    <CatDiv disabled={clinic.acupuncturist? false : true} >
+                        {clinic.acupuncturist && <Info>Acupuncturist : </Info>}
+                        {clinic.acupuncturist && (
                         clinic.acupuncturist.map((item) => {
-                            return (<div>
-                                <FontAwesomeIcon    key={Math.random() * clinic._id}
-                                                    icon={faSyringe} />
-                                <span  key={Math.random() * clinic._id}>
-                                    {item}
-                                </span>
-                            </div>)})
-                    )}
-                    {clinic.physiotherapist && (
-                        clinic.physiotherapist.map((item) => {
-                            return (<div>
-                                <FontAwesomeIcon    key={Math.random() * clinic._id}
-                                                    icon={faWalking} />
-                                <span  key={Math.random() * clinic._id}>
-                                    {item}
-                                </span>
-                            </div>)})
-                    )}
-                    {clinic.chiropractor && (
+                            return (
+                                <Text  key={Math.random() * clinic._id}>
+                                    "{item}"
+                                </Text>
+                            )})
+                        )}
+                    </CatDiv>
+                    <CatDiv disabled={clinic.physiotherapist? false : true}>
+                        {clinic.physiotherapist && <Info>Physiotherapist : </Info>}
+                        {clinic.physiotherapist && (
+                            clinic.physiotherapist.map((item) => {
+                                return (
+                                    <Text  key={Math.random() * clinic._id}>
+                                        "{item}"
+                                    </Text>
+                                )})
+                        )}
+                    </CatDiv>
+                    <CatDiv disabled={clinic.chiropractor? false : true}>
+                        {clinic.chiropractor && <Info>Chiropractor : </Info>}
+                        {clinic.chiropractor && (
                         clinic.chiropractor.map((item) => {
-                            return (<div>
-                                <FontAwesomeIcon    key={Math.random() * clinic._id}
-                                                    icon={faPersonCane} />
-                                <span  key={Math.random() * clinic._id}>
-                                    {item}
-                                </span>
-                            </div>)})
-                    )}
-                    {clinic.osteopath && (
+                            return (
+                                <Text  key={Math.random() * clinic._id}>
+                                    "{item}"
+                                </Text>
+                            )})
+                        )}
+                    </CatDiv>
+                    <CatDiv disabled={clinic.osteopath? false : true}>
+                        {clinic.osteopath && <Info>Osteopath : </Info>}
+                        {clinic.osteopath && (
                         clinic.osteopath.map((item) => {
-                            return (<div>
-                                <FontAwesomeIcon    key={Math.random() * clinic._id}
-                                                    icon={faHandDots} />
-                                <span  key={Math.random() * clinic._id}>
-                                    {item}
-                                </span>
-                            </div>)})
-                    )}
+                            return (
+                                <Text  key={Math.random() * clinic._id}>
+                                    "{item}"
+                                </Text>
+                            )})
+                        )}
+                    </CatDiv>
+                    
                 </Right>
-            
             </>): <></>}
-        </Div>
+        </Wrapper>
     )
 }
-const Div = styled.div`
+const Wrapper = styled.div`
     display: flex;
-`
-const Left = styled.div`
-    
+    justify-content: space-around;
+    margin: 25px;
 `
 const Right = styled.div`
-    
+    display: flex;
+    flex-direction: column;
+    margin-left: 25px;
 `
-
- export default DetailPage
+const H1 = styled.h1`
+    padding: 25px;
+    font-size: 30px;
+`
+const InfoDiv = styled.div`
+    display: flex;
+    margin: 25px;
+`
+const Info = styled.span`
+    margin-left: 10px;
+`
+const CatDiv = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    margin: 25px;
+`
+const Text = styled.span`
+    margin-left: 10px;
+`
+    export default DetailPage

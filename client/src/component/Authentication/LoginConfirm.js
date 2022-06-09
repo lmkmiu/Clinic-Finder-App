@@ -10,8 +10,8 @@ const LoginConfirm = ({ user }) => {
         navigate("/");
       }}
     >
-      <GreetingImage src="" alt="logIn Confirm Pic" />
-      <GreetingMessage>Start looking for Clinic</GreetingMessage>
+      <GreetingImage src={window.location.origin + "/welcome.png"} alt="logIn Confirm Pic" />
+      <GreetingMessage>Welcome! Enter site</GreetingMessage>
     </ContinueToWatchButton>
   );
 };
@@ -37,11 +37,8 @@ const GreetingImage = styled.img`
 `;
 const GreetingMessage = styled.span`
   position: absolute;
-  bottom: 150px;
-  left: 340px;
-  font-size: 1.5rem;
-  color: var(--color-green-blue);
-  &:hover {
-    color: var(--color-fandango-pink);
-  }
+  bottom: 20%;
+  left: 50%;
+  font-size: 30px;
+  color: var(--color-fandango-pink)
 `;
