@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
+import { Rating } from 'react-simple-star-rating'
 
 import styled from 'styled-components'
 import InputComment from './InputComment.js'
@@ -10,6 +11,7 @@ const Comments = () => {
     // get selected clinic ID and fetch single clinic from server
     const id = JSON.parse(window.sessionStorage.getItem("clinicId"))
     const [ clinic , setClinic ] = useState(null)
+    const [ratingValue, setRatingValue] = useState(null)
 
     useEffect(() => {
         fetch(`/api/business/${id}`)
@@ -21,13 +23,11 @@ const Comments = () => {
                 console.log("Error", error);
             });
     }, [id])
-//creating an array for rating
-let ratingStar = []
-if (clinic) {
-    for (let i = 0; i < clinic.rating; i ++) {
-        ratingStar = [...ratingStar, i]
+
+    const handleRating = (rate: number) => {
+        setRatingValue(rate * 5 / 100)
     }
-}
+    ratingValue && console.log(ratingValue)
     return (
         <Wrapper>
         {clinic && (
@@ -35,13 +35,6 @@ if (clinic) {
                 <SingleMap clinic={clinic} /> 
                 <Div>
                     <H1>{clinic.Name}</H1>
-                    <h1>Rating</h1>
-                    <Stars> 
-                        {ratingStar.map(() => {
-                            return <FontAwesomeIcon key={10400098760 * clinic._id}
-                                                    icon={faStar} />
-                        })}
-                    </Stars>
                     {clinic.comments && (
                         <div>
                             <h1>Comments</h1>
@@ -52,8 +45,15 @@ if (clinic) {
                                         <User> -- {item.user} </User>
                                     </Comment>
                                     )
-                            })}
+                                })}
                         </div>) }
+                        <h1>Give your rating</h1>
+                        <Rating onClick={handleRating}
+                                ratingValue={ratingValue}
+                                fillColorArray={['#f17a45', '#f19745', '#f1a545', '#f1b345', '#f1d045']}
+                                showTooltip
+                                tooltipArray={['Terrible', 'Bad', 'Average', 'Great', 'Prefect']}
+                        />
                     <InputComment />
                 </Div>
             </>

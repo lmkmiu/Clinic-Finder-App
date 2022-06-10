@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLocationDot, faPhone, faStar } from '@fortawesome/free-solid-svg-icons'
+import { Rating } from 'react-simple-star-rating'
 
 import styled from "styled-components";
 import { useContext, useEffect, useState } from "react";
@@ -10,15 +11,6 @@ const SideDetail = () => {
     const { state: { selectedClinic },
             actions: {  }} = useContext(AppContext)
     const navigate = useNavigate();
-
-    //creating an array for rating
-    let ratingStar = []
-        if (selectedClinic) {
-        for (let i = 0; i < selectedClinic.rating; i ++) {
-            ratingStar = [...ratingStar, i]
-            console.log(ratingStar)
-        }}
-
 
     // save the selected clinic ID to session storage and redirect to clinic detail page
     const handleCLick = () => {
@@ -31,12 +23,8 @@ const SideDetail = () => {
                 <>
                     <H1>{selectedClinic.Name}</H1>
                     <h1>Rating</h1>
-                    <Stars> 
-                        {ratingStar.map(() => {
-                            return <FontAwesomeIcon key={Math.random() * selectedClinic._id}
-                                                    icon={faStar} />
-                        })}
-                    </Stars>
+                    <Rating initialValue={selectedClinic.rating} 
+                    />
                     <Right>
                         <InfoDiv>
                             <FontAwesomeIcon icon={faPhone} /> 
@@ -84,7 +72,7 @@ const SideDetail = () => {
                         </CatDiv>}
                     </Right>
                     <Btn onClick={handleCLick}>
-                        Detail and Review
+                        Leave your review
                     </Btn>
                 </>)}
         </Wrapper>
