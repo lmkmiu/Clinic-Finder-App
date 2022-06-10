@@ -7,33 +7,18 @@ import { useNavigate } from 'react-router-dom'
 import { AppContext } from '../../AppContext';
 
 const SideDetail = () => {
-// get selected clinic ID and fetch single clinic from server
-    // const id = JSON.parse(window.sessionStorage.getItem("clinicId"))
-    // const [ clinic , setClinic ] = useState(null)
-    // const [ loaded, setLoaded ] = useState(null)
     const { state: { selectedClinic },
             actions: {  }} = useContext(AppContext)
     const navigate = useNavigate();
-    
-    // useEffect(() => {
-    //     fetch(`/api/business/${id}`)
-    //         .then((res) => res.json())
-    //         .then((data) => { 
-    //             setClinic(data.data)
-    //             setLoaded(true)
-    //         })
-    //         .catch((error) => {
-    //             console.log("Error", error);
-    //         });
-    // }, [id])
-    
+
     //creating an array for rating
     let ratingStar = []
-    if (selectedClinic) {
+        if (selectedClinic) {
         for (let i = 0; i < selectedClinic.rating; i ++) {
             ratingStar = [...ratingStar, i]
-        }
-    }
+            console.log(ratingStar)
+        }}
+
 
     // save the selected clinic ID to session storage and redirect to clinic detail page
     const handleCLick = () => {
@@ -44,73 +29,70 @@ const SideDetail = () => {
         <Wrapper >
             {selectedClinic && (
                 <>
-                <H1>{selectedClinic.Name}</H1>
-                <h1>Rating</h1>
-                <Stars> 
-                    {ratingStar.map(() => {
-                        return <FontAwesomeIcon key={10400098760 * selectedClinic._id}
-                                            icon={faStar} />
-                    })}
-                </Stars>
-                <Right>
-                    <InfoDiv>
-                        <FontAwesomeIcon icon={faPhone} /> 
-                        <Info>
-                            {selectedClinic.phone}
-                        </Info>
-                    </InfoDiv>
-                    <InfoDiv>
-                        <FontAwesomeIcon icon={faLocationDot} />
-                        <Info>
-                            {selectedClinic.location}
-                        </Info>
-                    </InfoDiv>
-                    {selectedClinic.acupuncturist && <CatDiv >
-                        <Info>Acupuncturist : </Info>
-                        {selectedClinic.acupuncturist.map((item) => {
-                            return (
-                                <Text  key={1345960 * selectedClinic._id}>
-                                    "{item}"
-                                </Text>
-                            )})}
-                    </CatDiv>}
-                    {selectedClinic.chiropractor && <CatDiv >
-                        <Info>Chiropractor : </Info>
-                        {selectedClinic.chiropractor.map((item) => {
-                            return (
-                                <Text  key={27536 * selectedClinic._id}>
-                                    "{item}"
-                                </Text>
-                            )})}
-                    </CatDiv>}
-                    {selectedClinic.osteopath && <CatDiv >
-                        <Info>Osteopath : </Info>
-                        {selectedClinic.osteopath.map((item) => {
-                            return (
-                                <Text  key={39558990053 * selectedClinic._id}>
-                                    "{item}"
-                                </Text>
-                            )})}
-                    </CatDiv>}
-                    {selectedClinic.physiotherapist && <CatDiv >
-                        <Info>Physiotherapist : </Info>
-                        {selectedClinic.physiotherapist.map((item) => {
-                            return (
-                                <Text  key={4174379636 * selectedClinic._id}>
-                                    "{item}"
-                                </Text>
-                            )})}
-                    </CatDiv>}
-                </Right>
-                <Btn onClick={handleCLick}>
-                    Details
-                </Btn>
-            </>)}
+                    <H1>{selectedClinic.Name}</H1>
+                    <h1>Rating</h1>
+                    <Stars> 
+                        {ratingStar.map(() => {
+                            return <FontAwesomeIcon key={Math.random() * selectedClinic._id}
+                                                    icon={faStar} />
+                        })}
+                    </Stars>
+                    <Right>
+                        <InfoDiv>
+                            <FontAwesomeIcon icon={faPhone} /> 
+                            <Info> {selectedClinic.phone} </Info>
+                        </InfoDiv>
+                        <InfoDiv>
+                            <FontAwesomeIcon icon={faLocationDot} />
+                            <Info> {selectedClinic.location} </Info>
+                        </InfoDiv>
+                        {selectedClinic.acupuncturist && <CatDiv >
+                            <Info>Acupuncturist : </Info>
+                            {selectedClinic.acupuncturist.map((item) => {
+                                return (
+                                    <Text  key={Math.random() * selectedClinic._id}>
+                                        "{item}"
+                                    </Text>
+                                )})}
+                        </CatDiv>}
+                        {selectedClinic.chiropractor && <CatDiv >
+                            <Info>Chiropractor : </Info>
+                            {selectedClinic.chiropractor.map((item) => {
+                                return (
+                                    <Text  key={Math.random() * selectedClinic._id}>
+                                        "{item}"
+                                    </Text>
+                                )})}
+                        </CatDiv>}
+                        {selectedClinic.osteopath && <CatDiv >
+                            <Info>Osteopath : </Info>
+                            {selectedClinic.osteopath.map((item) => {
+                                return (
+                                    <Text  key={Math.random() * selectedClinic._id}>
+                                        "{item}"
+                                    </Text>
+                                )})}
+                        </CatDiv>}
+                        {selectedClinic.physiotherapist && <CatDiv >
+                            <Info>Physiotherapist : </Info>
+                            {selectedClinic.physiotherapist.map((item) => {
+                                return (
+                                    <Text  key={Math.random() * selectedClinic._id}>
+                                        "{item}"
+                                    </Text>
+                                )})}
+                        </CatDiv>}
+                    </Right>
+                    <Btn onClick={handleCLick}>
+                        Detail and Review
+                    </Btn>
+                </>)}
         </Wrapper>
     )
 }
 const Wrapper = styled.div`
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
     margin: 25px;
 `

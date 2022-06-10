@@ -19,7 +19,7 @@ const Map = () => {
     if (!isLoaded) return "Loading Maps"; 
 
     const mapContainerStyle = {
-        height: 700, 
+        height: 600, 
         width: '100%', 
         display: 'flex', 
         flexFlow: 'row nowrap', 
@@ -41,21 +41,20 @@ const Map = () => {
     
     return (
         <Div>
-        <Left>
-            <H1>Clinic Finder</H1>
-            <GoogleMap
-                mapContainerStyle={mapContainerStyle}
-                zoom={11}
-                center={center}
-                options={options}
-            >
-                <Markers />
-            </GoogleMap>
-        </Left>
+            <Left>
+                <H1>Clinic Finder</H1>
+                <GoogleMap
+                    mapContainerStyle={mapContainerStyle}
+                    zoom={11}
+                    center={center}
+                    options={options}
+                >
+                    <Markers />
+                </GoogleMap>
+            </Left>
         
-        <SideDetail />
-        
-    </Div>)
+            <SideDetail />
+        </Div>)
 }
 const Div = styled.div`
     display: flex;
@@ -72,5 +71,4 @@ const H1 = styled.h1`
     padding: 25px;
     font-size: 30px;
 `
-
     export default Map

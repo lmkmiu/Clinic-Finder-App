@@ -9,7 +9,6 @@ const Markers = () => {
 
 
     const handleSelect = (place) => {
-        console.log(place)
         selectClinic(place)
         window.sessionStorage.removeItem("clinicId")
         window.sessionStorage.setItem("clinicId", JSON.stringify(place._id));
