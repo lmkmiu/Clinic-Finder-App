@@ -54,13 +54,14 @@ const Filter = () => {
                 Chiropractic
         </label>
         <label className="container"> 
-            <input type="checkbox" value="physiotherapist" onClick={clickHandler}/> 
-                Physiotherapy
-        </label>
-        <label className="container"> 
             <input type="checkbox" value="osteopath" onClick={clickHandler}/> 
                 Osteopathy
         </label>
+        <label className="container"> 
+            <input type="checkbox" value="physiotherapist" onClick={clickHandler}/> 
+                Physiotherapy
+        </label>
+        
         <p> Rating</p>
         <label className="container"> 
             <input type="checkbox" value="oneStar" onClick={clickHandler}/> 

@@ -10,6 +10,7 @@ const SideBar = () => {
     const { isLoggedin, setIsLoggedin, currentUser, setCurrentUser } = useContext(UserContext);
 
     const navigate = useNavigate(); // react-router-dom 6.3.0 useNavigate instead of useHistory
+    // const id = JSON.parse(window.sessionStorage.getItem("userId"))
     const id = window.sessionStorage.getItem("userId")
 
     // get user name from sessionStorage and db
@@ -17,10 +18,7 @@ const SideBar = () => {
 
         fetch(`/api/user/${id}`)
             .then((res) => res.json())
-            .then((data) => {
-                console.log(data)
-                setCurrentUser(data.data)}
-        )
+            .then((data) => setCurrentUser(data.data))
         .catch((err) => { console.log(err)})
 
     }, [id]);
@@ -55,6 +53,8 @@ const SideBar = () => {
     )
 }
 const Wrapper = styled.div`
+    background-color: var(--color-glitter);
+    height: 100vh;
 `
 const Div = styled.div`
     display: flex;

@@ -1,59 +1,67 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 
-import { useContext } from "react"
-import { AppContext } from "../../AppContext.js"
-import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
+import InputComment from './InputComment.js'
+import SingleMap from "../Map/SingleMap.js"
+import { useEffect, useState } from 'react'
 
 const Comments = () => {
-    const { state: { selectedClinic },
-    actions: {  }} = useContext(AppContext)
-    const navigate = useNavigate();
+    // get selected clinic ID and fetch single clinic from server
+    const id = JSON.parse(window.sessionStorage.getItem("clinicId"))
+    const [ clinic , setClinic ] = useState(null)
+    const [ loaded, setLoaded ] = useState(null)
 
+    useEffect(() => {
+        fetch(`/api/business/${id}`)
+            .then((res) => res.json())
+            .then((data) => { 
+                setClinic(data.data)
+                setLoaded(true)
+            })
+            .catch((error) => {
+                console.log("Error", error);
+            });
+    }, [id])
 //creating an array for rating
 let ratingStar = []
-if (selectedClinic) {
-    for (let i = 0; i < selectedClinic.rating; i ++) {
+if (clinic) {
+    for (let i = 0; i < clinic.rating; i ++) {
         ratingStar = [...ratingStar, i]
     }
 }
-// save the selected clinic ID to session storage and redirect to clinic detail page
-const handleCLick = () => {
-    window.sessionStorage.setItem("clinicId", selectedClinic._id);
-    navigate(`/clinic/${selectedClinic._id}`);
-}
     return (
         <Wrapper>
-        {selectedClinic && (
+        {clinic && (
             <>
-            <H1>{selectedClinic.Name}</H1>
+                <div>
+                    <SingleMap clinic={clinic} /> 
+                </div>
+                <H1>{clinic.Name}</H1>
             <h1>Rating</h1>
             <Stars> 
                 {ratingStar.map(() => {
-                    return <FontAwesomeIcon key={Math.random()*selectedClinic._id}
+                    return <FontAwesomeIcon key={10400098760 * clinic._id}
                                             icon={faStar} />
                 })}
             </Stars>
-            <h1>Comments</h1>
-            {selectedClinic.comments && (
-                selectedClinic.comments.map((item) => {
+            {clinic.comments && <h1>Comments</h1> }
+            {clinic.comments && (
+                clinic.comments.map((item) => {
                     return (
-                        <Comment>
-                            <p key={Math.random()*selectedClinic._id}>
+                        <Comment key={204365567870 *clinic._id}>
+                            <p>
                                 {item.msg}
                             </p>
-                            <User key={Math.random()*selectedClinic._id}>
+                            <User>
                                 -- {item.user}
                             </User>
                         </Comment>
                     )
                 })
             )}
-            <Btn key={Math.random()*selectedClinic._id}
-                    onClick={handleCLick}>
-                Details
-            </Btn>
+            
+            <InputComment />
             </>
             )}
     
@@ -73,8 +81,8 @@ const H1 = styled.h1`
 const Stars = styled.div`
     display: flex;
     justify-content: space-evenly;
-    padding: 25px;
-    margin: 25px;
+    padding: 20px;
+    margin: 10px;
     border: 4px solid var(--color-glitter);
     border-radius: 5px;
     box-shadow: 0 4px 6px rgb(32 33 36 / 28%);
@@ -85,8 +93,8 @@ const User = styled.p`
     margin-top: 10px;
 `
 const Comment = styled.div`
-    padding: 25px;
-    margin: 25px;
+    padding: 20px;
+    margin: 10px;
     border: 4px solid var(--color-glitter);
     border-radius: 5px;
     box-shadow: 0 4px 6px rgb(32 33 36 / 28%);

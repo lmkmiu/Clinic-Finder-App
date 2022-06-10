@@ -7,6 +7,7 @@ const {
   getAllBusiness,
     filterBusiness,
     getSingleBusiness,
+    addComment,
     addNewUsers,
     getSingleUser
 } = require("./handler");
@@ -24,6 +25,7 @@ express()
   // get single business
   .get("/api/business/:id", getSingleBusiness)
   // posting comments
+  .post("/api/post-comment", addComment)
   // adding new users
   .post("/api/new-users", addNewUsers)
   // get single user

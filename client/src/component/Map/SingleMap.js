@@ -4,7 +4,7 @@ import {    GoogleMap,
             Marker } from "@react-google-maps/api";
 import { mapStyles } from "./mapStyles";
 
-const SingleMap = ({clinic}) => {
+const SingleMap = ({ clinic }) => {
 
     const { isLoaded, loadError 
     } = useJsApiLoader({
@@ -43,10 +43,9 @@ const SingleMap = ({clinic}) => {
                 center={center}
                 options={options}
             >
-                <Marker key={clinic._id}
-                    position={{ lat: clinic.geolocation.lat, 
-                                lng: clinic.geolocation.lng }}
-                    animation={window.google.maps.Animation.DROP}
+                <Marker position={{ lat: clinic.geolocation.lat, 
+                                    lng: clinic.geolocation.lng }}
+                        animation={window.google.maps.Animation.BOUNCE}
                 />
             </GoogleMap>
             

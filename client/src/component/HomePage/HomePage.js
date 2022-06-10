@@ -20,10 +20,6 @@ const { actions: {
             });
     }, []);
 
-    // useEffect(() => {
-    //     getHomepageData(data)
-    // }, [])
-
     return (
         <>
         <Map />

@@ -5,10 +5,8 @@ import GlobalStyles from "./GlobalStyles";
 
 import SideBar from "./component/Sidebar/SideBar";
 import HomePage from "./component/HomePage/HomePage";
-import DetailPage from "./component/DetailPage/DetailPage";
-import Map from "./component/Map/Map";
-import Comments from "./component/Comments/Comments"
 import Authentication from "./component/Authentication/Authentication";
+import Comments from "./component/Comments/Comments";
 
 const App = () => {
 
@@ -26,7 +24,7 @@ const App = () => {
                     } />
           <Route  path="/clinic/:_id" 
                   element={
-                    <DetailPage />
+                    <Comments />
                     } />
           <Route  path="/login" 
                   element={

@@ -92,7 +92,7 @@ const filterBusiness = async (req, res) => {
       message: "something wrong",
     });
   }
-  // client.close();
+  //client.close();
 };
 //////////////////////////////////////////////////////////////////
 // get single business getSingleBusiness
@@ -115,6 +115,34 @@ const getSingleBusiness = async (req, res) => {
   }
   client.close();
 };
+//////////////////////////////////////////////////////////////////
+// adding new Comments
+const addComment = async (req, res) => {
+  const { userId, clinicId, userInput } = req.body
+  const commentId = uuidv4()
+  console.log(userId)
+  console.log(typeof clinicId)
+  console.log(userInput)
+
+  try {
+    await client.connect();
+    const db = client.db("Clinic");
+    const data = await db.collection("users").findOne({ _id: userId });
+    console.log(data)
+    const comment = { id: commentId, user: data.username, msg: userInput }
+
+    // updating to the business db
+    const answer = await db
+      .collection("business")
+      .updateOne({ _id: clinicId }, { $push: { comments: comment } });
+    if (answer.modifiedCount === 1) {
+      res.status(200).json({ status: 200, message: "good"})
+    }
+  } catch (err) {
+    res.status(404).json({ status: 404, message: err.message });
+  }
+  client.close();
+}
 //////////////////////////////////////////////////////////////////
 // adding new users
 const addNewUsers = async (req, res) => {
@@ -151,7 +179,6 @@ const getSingleUser = async (req, res) => {
     await client.connect();
     const db = await client.db("Clinic");
     const data = await db.collection("users").findOne({ _id: id});
-      console.log(data)
       res.status(200).json({
         status: 200,
         data: data,
@@ -169,6 +196,7 @@ module.exports = {
     getAllBusiness,
     filterBusiness,
     getSingleBusiness,
+    addComment,
     addNewUsers,
     getSingleUser
   };

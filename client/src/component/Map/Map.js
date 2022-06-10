@@ -3,7 +3,7 @@ import {    GoogleMap,
             useJsApiLoader } from "@react-google-maps/api";
 import { mapStyles } from "./mapStyles";
 import Markers from "./Markers";
-import Comments from "../Comments/Comments"
+import SideDetail from "../SideDetail/SideDetail";
 
 // import { formatRelative } from "date-fns";
 // const libraries = [ "places" ];
@@ -53,7 +53,7 @@ const Map = () => {
             </GoogleMap>
         </Left>
         
-        <Comments />
+        <SideDetail />
         
     </Div>)
 }
