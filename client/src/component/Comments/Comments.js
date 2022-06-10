@@ -1,5 +1,3 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar } from '@fortawesome/free-solid-svg-icons'
 import { Rating } from 'react-simple-star-rating'
 
 import styled from 'styled-components'
@@ -36,8 +34,8 @@ const Comments = () => {
                 <Div>
                     <H1>{clinic.Name}</H1>
                     {clinic.comments && (
-                        <div>
-                            <h1>Comments</h1>
+                        <CommentsDiv>
+                            <H2>Comments</H2>
                             {clinic.comments.map((item) => {
                                 return (
                                     <Comment key={204365567870 *clinic._id}>
@@ -46,14 +44,18 @@ const Comments = () => {
                                     </Comment>
                                     )
                                 })}
-                        </div>) }
-                        <h1>Give your rating</h1>
-                        <Rating onClick={handleRating}
+                        </CommentsDiv>) }
+                        <CommentsDiv>
+                            <H2>Give your rating</H2>
+                            <Comment>
+                                <Rating onClick={handleRating}
                                 ratingValue={ratingValue}
                                 fillColorArray={['#f17a45', '#f19745', '#f1a545', '#f1b345', '#f1d045']}
                                 showTooltip
                                 tooltipArray={['Terrible', 'Bad', 'Average', 'Great', 'Prefect']}
-                        />
+                                />
+                            </Comment>
+                        </CommentsDiv>
                     <InputComment />
                 </Div>
             </>
@@ -61,24 +63,24 @@ const Comments = () => {
         </Wrapper>
     )
 }
-
 const Wrapper = styled.div`
     display: flex;
     margin: 25px;
 `
 const H1 = styled.h1`
-    padding: 25px;
-    font-size: 30px;
+    padding: 10px;
+    font-size: 25px;
     align-self: center;
 `
-const Stars = styled.div`
+const H2 = styled.h2`
+    padding: 10px;
+    font-size: 20px;
+`
+const CommentsDiv = styled.div`
     display: flex;
-    justify-content: space-evenly;
-    padding: 20px;
-    margin: 10px;
-    border: 4px solid var(--color-glitter);
-    border-radius: 5px;
-    box-shadow: 0 4px 6px rgb(32 33 36 / 28%);
+    align-items: flex-start;
+    flex-direction: column;
+    margin: 10px 25px;
 `
 const User = styled.p`
     font-size: 15px;
@@ -87,7 +89,8 @@ const User = styled.p`
 `
 const Comment = styled.div`
     padding: 20px;
-    margin: 10px;
+    margin: 10px 0px;
+    width: 100%;
     border: 4px solid var(--color-glitter);
     border-radius: 5px;
     box-shadow: 0 4px 6px rgb(32 33 36 / 28%);

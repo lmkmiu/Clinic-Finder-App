@@ -1,9 +1,9 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faLocationDot, faPhone, faStar } from '@fortawesome/free-solid-svg-icons'
+import { faLocationDot, faPhone } from '@fortawesome/free-solid-svg-icons'
 import { Rating } from 'react-simple-star-rating'
 
 import styled from "styled-components";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { useNavigate } from 'react-router-dom'
 import { AppContext } from '../../AppContext';
 
@@ -35,7 +35,7 @@ const SideDetail = () => {
                             <Info> {selectedClinic.location} </Info>
                         </InfoDiv>
                         {selectedClinic.acupuncturist && <CatDiv >
-                            <Info>Acupuncturist : </Info>
+                            <Info><strong>Acupuncturist : </strong></Info>
                             {selectedClinic.acupuncturist.map((item) => {
                                 return (
                                     <Text  key={Math.random() * selectedClinic._id}>
@@ -44,7 +44,7 @@ const SideDetail = () => {
                                 )})}
                         </CatDiv>}
                         {selectedClinic.chiropractor && <CatDiv >
-                            <Info>Chiropractor : </Info>
+                            <Info><strong>Chiropractor :</strong> </Info>
                             {selectedClinic.chiropractor.map((item) => {
                                 return (
                                     <Text  key={Math.random() * selectedClinic._id}>
@@ -53,7 +53,7 @@ const SideDetail = () => {
                                 )})}
                         </CatDiv>}
                         {selectedClinic.osteopath && <CatDiv >
-                            <Info>Osteopath : </Info>
+                            <Info><strong>Osteopath :</strong> </Info>
                             {selectedClinic.osteopath.map((item) => {
                                 return (
                                     <Text  key={Math.random() * selectedClinic._id}>
@@ -62,7 +62,7 @@ const SideDetail = () => {
                                 )})}
                         </CatDiv>}
                         {selectedClinic.physiotherapist && <CatDiv >
-                            <Info>Physiotherapist : </Info>
+                            <Info><strong>Physiotherapist :</strong> </Info>
                             {selectedClinic.physiotherapist.map((item) => {
                                 return (
                                     <Text  key={Math.random() * selectedClinic._id}>
@@ -118,19 +118,35 @@ const Text = styled.span`
     margin-left: 10px;
 `
 const Btn = styled.button`
-    margin: 25px;
-    border: none;
-    border-radius: 5px;
-    background: var(--color-powder-blue);
-    text-decoration: none;
-    font-size: 15px;
-    height: 30px;
-    transition: all 300ms ease-in-out;
-    cursor: pointer;
-    padding: 0 20px;
-    &:hover {
-        background: var(--color-green-blue);
-        color: #fff;
+    padding: 20px 40px;
+	background: none;
+	border: none;
+	position: relative;
+	text-transform: uppercase;
+	font-weight: bold;
+    color: var(--color-green-blue);
+	letter-spacing: 3px;
+	cursor: pointer;
+	&:after, &:before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		border: 2px solid var(--color-green-blue);
+		transition: transform .2s ;
+    }
+	&:after {
+		transform: translate(3px, 3px)	
+    }
+	&:before {
+		transform: translate(-3px, -3px)
+    }
+	&:hover {
+		&:after, &:before {
+			transform: translate(0)
+        }
     }
 `
     export default SideDetail

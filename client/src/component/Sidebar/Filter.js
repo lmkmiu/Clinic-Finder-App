@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-regular-svg-icons'
 import { useContext, useEffect, useState } from 'react'
 import { AppContext } from '../../AppContext.js'
+import styled from 'styled-components'
 
 const Filter = () => {
     const { actions: { getfilteredData }} = useContext(AppContext)
@@ -42,59 +43,119 @@ const Filter = () => {
         setCheckbox({...checkbox, [e.target.value]:!checkbox[e.target.value]})
         setClickUpdate(!clickUpdate)
     } 
-    
+    // rest button reset checkbox to default
+    const resetHandler = () => {
+        setCheckbox({
+            "acupuncturist":false, "chiropractor":false, "physiotherapist":false, "osteopath":false,
+            "oneStar":false, "twoStars":false, "threeStars":false, "fourStarts":false, "fiveStars":false
+        })
+        setClickUpdate(!clickUpdate)
+    }
     return (
-        <>
-        <label className="container"> 
-            <input type="checkbox" value="acupuncturist" onClick={clickHandler}/> 
-                Acupuncture
-        </label>
-        <label className="container"> 
-            <input type="checkbox" value="chiropractor" onClick={clickHandler}/> 
-                Chiropractic
-        </label>
-        <label className="container"> 
-            <input type="checkbox" value="osteopath" onClick={clickHandler}/> 
-                Osteopathy
-        </label>
-        <label className="container"> 
-            <input type="checkbox" value="physiotherapist" onClick={clickHandler}/> 
-                Physiotherapy
-        </label>
+        <form>
+            <Div>
+                <h3>Category</h3>
+                <label className="container"> 
+                    <input type="checkbox" value="acupuncturist" onClick={clickHandler}/> 
+                        Acupuncture
+                </label>
+                <label className="container"> 
+                    <input type="checkbox" value="chiropractor" onClick={clickHandler}/> 
+                        Chiropractic
+                </label>
+                <label className="container"> 
+                    <input type="checkbox" value="osteopath" onClick={clickHandler}/> 
+                        Osteopathy
+                </label>
+                <label className="container"> 
+                    <input type="checkbox" value="physiotherapist" onClick={clickHandler}/> 
+                        Physiotherapy
+                </label>
+            </Div>
         
-        <p> Rating</p>
-        <label className="container"> 
-            <input type="checkbox" value="oneStar" onClick={clickHandler}/> 
-                <FontAwesomeIcon icon={faStar} />
-        </label>
-        <label className="container"> 
-            <input type="checkbox" value="twoStars" onClick={clickHandler}/>   
-                <FontAwesomeIcon icon={faStar} />
-                <FontAwesomeIcon icon={faStar} />
-        </label>
-        <label className="container"> 
-            <input type="checkbox" value="threeStars" onClick={clickHandler}/>   
-                <FontAwesomeIcon icon={faStar} />
-                <FontAwesomeIcon icon={faStar} />
-                <FontAwesomeIcon icon={faStar} />
-        </label>
-        <label className="container"> 
-            <input type="checkbox" value="fourStars" onClick={clickHandler}/>   
-                <FontAwesomeIcon icon={faStar} />
-                <FontAwesomeIcon icon={faStar} />
-                <FontAwesomeIcon icon={faStar} />
-                <FontAwesomeIcon icon={faStar} />
-        </label>
-        <label className="container"> 
-            <input type="checkbox" value="fiveStars" onClick={clickHandler}/>   
-                <FontAwesomeIcon icon={faStar} />
-                <FontAwesomeIcon icon={faStar} />
-                <FontAwesomeIcon icon={faStar} />
-                <FontAwesomeIcon icon={faStar} />
-                <FontAwesomeIcon icon={faStar} />
-        </label>
-    
-        </>
+            <Div>
+                <h3>Rating</h3>
+                <label className="container"> 
+                    <input type="checkbox" value="oneStar" onClick={clickHandler}/> 
+                        <FontAwesomeIcon icon={faStar} />
+                </label>
+                <label className="container"> 
+                    <input type="checkbox" value="twoStars" onClick={clickHandler}/>   
+                        <FontAwesomeIcon icon={faStar} />
+                        <FontAwesomeIcon icon={faStar} />
+                </label>
+                <label className="container"> 
+                    <input type="checkbox" value="threeStars" onClick={clickHandler}/>   
+                        <FontAwesomeIcon icon={faStar} />
+                        <FontAwesomeIcon icon={faStar} />
+                        <FontAwesomeIcon icon={faStar} />
+                </label>
+                <label className="container"> 
+                    <input type="checkbox" value="fourStars" onClick={clickHandler}/>   
+                        <FontAwesomeIcon icon={faStar} />
+                        <FontAwesomeIcon icon={faStar} />
+                        <FontAwesomeIcon icon={faStar} />
+                        <FontAwesomeIcon icon={faStar} />
+                </label>
+                <label className="container"> 
+                    <input type="checkbox" value="fiveStars" onClick={clickHandler}/>   
+                        <FontAwesomeIcon icon={faStar} />
+                        <FontAwesomeIcon icon={faStar} />
+                        <FontAwesomeIcon icon={faStar} />
+                        <FontAwesomeIcon icon={faStar} />
+                        <FontAwesomeIcon icon={faStar} />
+                </label>
+            </Div>
+            <ResetBtn   type="button"
+                        onClick={resetHandler} 
+                        value="Reset form">
+                Reset
+            </ResetBtn>
+        </form>
     )
 }
+const Div = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    margin: 25px;
+	background: none;
+	border: none;
+	position: relative;
+    color: var(--color-green-blue);
+    border: 2px solid var(--color-green-blue);
+`
+const ResetBtn = styled.button`
+    padding: 10px 20px;
+	background: none;
+	border: none;
+	position: relative;
+	text-transform: uppercase;
+	font-weight: bold;
+    color: var(--color-green-blue);
+	letter-spacing: 3px;
+	cursor: pointer;
+	&:after, &:before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		border: 2px solid var(--color-green-blue);
+		transition: transform .2s ;
+    }
+	&:after {
+		transform: translate(3px, 3px)	
+    }
+	&:before {
+		transform: translate(-3px, -3px)
+    }
+	&:hover {
+		&:after, &:before {
+			transform: translate(0)
+        }
+    }
+`
  export default Filter

@@ -67,26 +67,40 @@ const Logo = styled.img`
 const Link = styled(NavLink)`
     margin: 25px;
 `
-const Username = styled.p`
+const Username = styled.h1`
     margin: 25px;
     color: var(--color-green-blue);
 `
 const SignInButton = styled.button`
-    margin: 25px;
-    border: none;
-    border-radius: 5px;
-    background: var(--color-powder-blue);
-    text-decoration: none;
-    font-size: 15px;
-    height: 30px;
-    margin-right: 20px;
-    margin-left: 20px;
-    transition: all 300ms ease-in-out;
-    cursor: pointer;
-    padding: 0 20px;
-    &:hover {
-        background: var(--color-green-blue);
-        color: #fff;
+    padding: 20px 40px;
+	background: none;
+	border: none;
+	position: relative;
+	text-transform: uppercase;
+	font-weight: bold;
+    color: var(--color-green-blue);
+	letter-spacing: 3px;
+	cursor: pointer;
+	&:after, &:before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		border: 2px solid var(--color-green-blue);
+		transition: transform .2s ;
+    }
+	&:after {
+		transform: translate(3px, 3px)	
+    }
+	&:before {
+		transform: translate(-3px, -3px)
+    }
+	&:hover {
+		&:after, &:before {
+			transform: translate(0)
+        }
     }
 `
 export default SideBar

@@ -70,5 +70,6 @@ const Left = styled.div`
 const H1 = styled.h1`
     padding: 25px;
     font-size: 30px;
+    color: var(--color-green-blue);
 `
     export default Map
