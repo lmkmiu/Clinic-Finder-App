@@ -21,7 +21,7 @@ const SingleMap = ({ clinic }) => {
         flexFlow: 'row nowrap', 
         justifyContent: 'center', 
         padding: 0,
-        border: "4px solid var(--color-powder-blue)",
+        border: "4px solid var(--color-glitter)",
         borderRadius: "10px",
         boxShadow: "0 4px 6px rgb(32 33 36 / 28%)"
     }

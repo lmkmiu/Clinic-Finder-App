@@ -106,11 +106,13 @@ const Filter = () => {
                         <FontAwesomeIcon icon={faStar} />
                 </label>
             </Div>
-            <ResetBtn   type="button"
-                        onClick={resetHandler} 
-                        value="Reset form">
-                Reset
-            </ResetBtn>
+            <BtnDiv>
+                <ResetBtn   type="button"
+                            onClick={resetHandler} 
+                            value="Reset form">
+                    Reset
+                </ResetBtn>
+            </BtnDiv>
         </form>
     )
 }
@@ -125,6 +127,11 @@ const Div = styled.div`
 	position: relative;
     color: var(--color-green-blue);
     border: 2px solid var(--color-green-blue);
+`
+const BtnDiv = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 `
 const ResetBtn = styled.button`
     padding: 10px 20px;

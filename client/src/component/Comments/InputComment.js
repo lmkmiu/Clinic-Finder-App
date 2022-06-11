@@ -1,32 +1,48 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import styled from "styled-components";
+import { AppContext } from "../../AppContext";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const InputComment = () => {
 
-const [state, setState] = useState({});
 const [userInput, setUserInput] = useState("");
 const [char, setChar] = useState();
 const userId = window.sessionStorage.getItem("userId")
 const clinicId = parseInt(window.sessionStorage.getItem("clinicId"))
+const { state: {ratingValue} } = useContext(AppContext)
 
     const handleSubmit = (e) => {
+        const currentUser = window.sessionStorage.getItem("userId")
         e.preventDefault();
-        //pass the userId for matching the username and update the correct user db
-        fetch(`/api/post-comment`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            //send req.body to the db to update the business comments
-            body: JSON.stringify({userId, clinicId, userInput}) 
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                setState(data);
+        // need to logged it to leave comment
+        if (!currentUser) {
+            toast.warn("😱 Opps, looks like you forgot to log in.", {theme: "colored"})
+        }
+        // check if user gae a start rating first
+        if (!ratingValue) {
+            toast.warn("⭐️ Please give me a rating ⭐️", {theme: "colored"})
+
+        } else {
+            //pass the userId for matching the username and update the correct user db
+            fetch(`/api/post-comment`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                //send req.body to the db to update the business comments
+                body: JSON.stringify({userId, clinicId, userInput, ratingValue}) 
             })
-        //set the input area back to empty
-        setUserInput("")
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                })
+            //set the input area back to empty
+            setUserInput("")
+            toast.success("Comment added", {
+                theme: "colored"
+            })
+        }
     }
 
     // show live words limit
@@ -38,6 +54,7 @@ const clinicId = parseInt(window.sessionStorage.getItem("clinicId"))
 
     return (
         <form onSubmit={handleSubmit}>
+            <ToastContainer />
             <InputDiv>
                 <Input  value={userInput} 
                         type="text" 

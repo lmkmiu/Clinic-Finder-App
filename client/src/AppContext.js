@@ -10,6 +10,7 @@ const initialState = {
     selectedClinic: null,
     commentsLoad: false,
     commentsData: [],
+    ratingValue: null,
 }
 
 const reducer = (state, action) => {
@@ -34,6 +35,12 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 selectedClinic: action.data
+            }
+        }
+        case "set-rating-value" : {
+            return {
+                ...state,
+                ratingValue: action.data
             }
         }
         
@@ -63,6 +70,12 @@ export const AppProvider = ({ children }) => {
             data
         })
     }
+    const setRatingValue = (data) => {
+        dispatch({
+            type: "set-rating-value",
+            data
+        })
+    }
 
 
     return (
@@ -72,6 +85,7 @@ export const AppProvider = ({ children }) => {
                 getHomepageData,
                 getfilteredData, 
                 selectClinic,
+                setRatingValue
             }
         }}>
             {children}

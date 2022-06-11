@@ -40,12 +40,18 @@ const SideBar = () => {
                 <Link to="/">
                     <Logo alt="logo" src={window.location.origin + "/logo.png"} />
                 </Link>
-                <Username>
-                    {isLoggedin ? `Hello! ${currentUser.username}` : ""}
-                </Username>
-                <SignInButton onClick={loginHandler}>
-                    {isLoggedin ? "Logout" : "Login / Sign Up"}
-                </SignInButton>
+                { isLoggedin ? (<>
+                    <Username>
+                        Hello! {currentUser.username}
+                    </Username>
+                    <SignInButton onClick={loginHandler}>
+                        Logout
+                    </SignInButton>
+                </>) : (
+                    <SignInButton onClick={loginHandler}>
+                    Login / Sign Up
+                    </SignInButton>
+                )}
                 <Filter />
             </Div>
             
@@ -72,7 +78,7 @@ const Username = styled.h1`
     color: var(--color-green-blue);
 `
 const SignInButton = styled.button`
-    padding: 20px 40px;
+    padding: 15px 25px;
 	background: none;
 	border: none;
 	position: relative;

@@ -1,35 +1,51 @@
 import { Rating } from 'react-simple-star-rating'
+import FancyLoadingAnimation from 'fancy-loading-animation'
+import 'fancy-loading-animation/dist/index.css'
 
 import styled from 'styled-components'
 import InputComment from './InputComment.js'
 import SingleMap from "../Map/SingleMap.js"
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
+import { AppContext } from '../../AppContext.js'
 
 const Comments = () => {
     // get selected clinic ID and fetch single clinic from server
     const id = JSON.parse(window.sessionStorage.getItem("clinicId"))
     const [ clinic , setClinic ] = useState(null)
-    const [ratingValue, setRatingValue] = useState(null)
+    const [ load, setLoad ] = useState(null)
+    // const [ratingValue, setRatingValue] = useState(null)
+    const { state: {ratingValue} , actions: {setRatingValue} } = useContext(AppContext)
 
     useEffect(() => {
         fetch(`/api/business/${id}`)
             .then((res) => res.json())
             .then((data) => { 
                 setClinic(data.data)
+                setLoad(true)
             })
             .catch((error) => {
                 console.log("Error", error);
             });
     }, [id])
 
-    const handleRating = (rate: number) => {
+    const handleRating = (rate) => {
         setRatingValue(rate * 5 / 100)
     }
-    ratingValue && console.log(ratingValue)
+
+    
     return (
         <Wrapper>
-        {clinic && (
-            <>
+            {!load ? (
+                <Div>
+                    <FancyLoadingAnimation
+                    loadingAnimationVarient='paper-bird'
+                    loadingAnimationDelay={0.2}
+                    loadingContainerColor="#E2F0F9"
+                    loadingCharacterDirection='left'
+                    loadingTextStyle={{ color: "#286fb4" }}
+                    />
+                </Div>
+                ) : (<>
                 <SingleMap clinic={clinic} /> 
                 <Div>
                     <H1>{clinic.Name}</H1>
@@ -40,6 +56,9 @@ const Comments = () => {
                                 return (
                                     <Comment key={204365567870 *clinic._id}>
                                         <p> {item.msg} </p>
+                                        <Rating initialValue={item.rating}
+                                                fillColorArray={['#f17a45', '#f19745', '#f1a545', '#f1b345', '#f1d045']}
+                                        />
                                         <User> -- {item.user} </User>
                                     </Comment>
                                     )
@@ -82,7 +101,7 @@ const CommentsDiv = styled.div`
     flex-direction: column;
     margin: 10px 25px;
 `
-const User = styled.p`
+const User = styled.span`
     font-size: 15px;
     font-style: italic;
     margin-top: 10px;

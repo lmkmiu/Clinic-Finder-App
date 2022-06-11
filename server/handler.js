@@ -118,24 +118,49 @@ const getSingleBusiness = async (req, res) => {
 //////////////////////////////////////////////////////////////////
 // adding new Comments
 const addComment = async (req, res) => {
-  const { userId, clinicId, userInput } = req.body
+  const { userId, clinicId, userInput, ratingValue } = req.body
   const commentId = uuidv4()
-  console.log(userId)
-  console.log(typeof clinicId)
-  console.log(userInput)
 
   try {
     await client.connect();
     const db = client.db("Clinic");
     const data = await db.collection("users").findOne({ _id: userId });
-    console.log(data)
-    const comment = { id: commentId, user: data.username, msg: userInput }
+    // find the business rating and add new rating to do a new average
+    const business = await db.collection("business").findOne({ _id: parseInt(clinicId) })
+    
+    let totalComments = 1
+    if (business.comments) {
+      totalComments = business.comments.length + 1
+    }
 
-    // updating to the business db
-    const answer = await db
+    const newRating = ((parseInt(ratingValue) + parseInt(business.rating))/totalComments)
+    console.log(parseInt(ratingValue))
+    console.log(parseInt(business.rating))
+    console.log(totalComments)
+    console.log(newRating, "newRating")
+
+    const comment = { id: commentId, 
+                      user: data.username, 
+                      rating: parseInt(ratingValue), 
+                      msg: userInput }
+
+    // updating new comment the business db
+    let answer = null
+    if ( business.comments ) {
+      answer = await db
+        .collection("business")
+        .updateOne({ _id: parseInt(clinicId) }, { $push: { comments: comment } });
+    } else {
+      answer = await db
+        .collection("business")
+        .updateOne({ _id: parseInt(clinicId) }, { $set: { comments: [comment] } });
+    }
+    // updating new rating the business db
+    const newAverage = await db
       .collection("business")
-      .updateOne({ _id: clinicId }, { $push: { comments: comment } });
-    if (answer.modifiedCount === 1) {
+      .updateOne({ _id: parseInt(clinicId) }, { $set: { rating: newRating } });
+
+    if (answer.modifiedCount === 1 && newAverage.modifiedCount === 1) {
       res.status(200).json({ status: 200, message: "good"})
     }
   } catch (err) {
@@ -148,19 +173,22 @@ const addComment = async (req, res) => {
 const addNewUsers = async (req, res) => {
   const { email, password, _id, username } = req.body;
   const newUser = { email, password, _id, username };
+  console.log(email)
+
   try {
     await client.connect();
     const db = client.db("Clinic");
 
   // check if user email correct
-    if (!email.includes("@")) {
-      return res.status(400).json({
-        status: 400,
-        success: "Invalid Email",
-      });
-    }
+    // if (!email.includes("@")) {
+    //   return res.status(400).json({
+    //     status: 400,
+    //     success: "Invalid Email",
+    //   });
+    // }
   // add new order in the new customerOrder collection
-    else await db.collection("users").insertOne(newUser);
+    // else 
+    await db.collection("users").insertOne(newUser);
 
     res
       .status(200)
@@ -174,7 +202,7 @@ const addNewUsers = async (req, res) => {
 // get Single user for sideBar username
 const getSingleUser = async (req, res) => {
   const { id } = req.params;
-
+  console.log(id)
   try {
     await client.connect();
     const db = await client.db("Clinic");

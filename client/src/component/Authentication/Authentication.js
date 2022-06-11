@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { useState, useRef, useEffect, useContext } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { UserContext } from "./UserContext";
 import { auth } from "./firebase"
@@ -31,21 +33,6 @@ const Authentication = () => {
     const isSignupToggleHandler = () => {
         setIsSignup(!isSignup);
     };
-    // .POST to save new user info to mongoDb users collection
-        // useEffect(() => {
-        //     const fetchDate = async () => {
-        //         await fetch("/api/new-users", {
-        //                     method: "POST",
-        //                     body: JSON.stringify({ ...newUser }),
-        //                     headers: {  Accept: "application/json",
-        //                                         "Content-Type": "application/json",
-        //                             },
-        //                     })
-        //             .then((res) => res.json())
-        //             .then((data) => { console.log(data)}) 
-        //         };
-        //     fetchDate();
-        // }, [newUser]);
 
   // **************************************
   // Basic functions for Authentication
@@ -58,8 +45,10 @@ const Authentication = () => {
     // Apart from that, we will grap user info to use our own db
     // And when user successfully sign up, the user will be logged in automatically.
         e.preventDefault();
-
         try {
+            toast.success("🦄 Welcome!!", {
+                theme: "colored"
+            })
             const result = await createUserWithEmailAndPassword(
                 auth,
                 email,
@@ -69,9 +58,11 @@ const Authentication = () => {
                 
         setNewUser({ email, password, _id: result.user.uid, username });
         setCurrentUser({ email, password, _id: result.user.uid, username });
+        // Save user id into session storage for keeping user login state
+        await window.sessionStorage.setItem("userId", result.user.uid);
 
          // .POST to save new user info to mongoDb users collection
-        const fetchDate = async () => {
+            const fetchDate = async () => {
             await fetch("/api/new-users", {
                     method: "POST",
                     body: JSON.stringify({ ...newUser }),
@@ -82,11 +73,11 @@ const Authentication = () => {
                 .then((res) => res.json())
                 .then((data) => { console.log(data)}) 
         };
-        fetchDate();
+        if (newUser) {
+            console.log(newUser) 
+            fetchDate();
+        }
         
-
-      // Save user id into session storage for keeping user login state
-        await window.sessionStorage.setItem("userId", result.user.uid);
 
       // Change Login state
             onAuthStateChanged(auth, (user) => {
@@ -95,14 +86,18 @@ const Authentication = () => {
                 } else setIsLoggedin(false);
             });
         } catch (err) {
-            window.alert(err.code);
+            toast.error(err.code, {
+                theme: "colored"
+            })
         }
     };
 
 // handler for logIn 
     const loginHandler = async (e) => {
         e.preventDefault();
-    try {
+    try { toast.success("🦄 Welcome!!", {
+            theme: "colored"
+        })
       // Firebase auth. checks user validation. (is member?)
         const result = await signInWithEmailAndPassword(auth, email, password);
         await window.sessionStorage.setItem("userId", result.user.uid)
@@ -114,7 +109,9 @@ const Authentication = () => {
                 } else setIsLoggedin(false);
             });
         } catch (err) {
-            window.alert(err.code);
+            toast.error(err.code, {
+                theme: "colored"
+            })
         }
     };
 
@@ -124,6 +121,7 @@ return (
         <ModalBackground>
         <Wrapper>
             {isLoggedin && <LoginConfirm user={email} />}
+            <ToastContainer />
 
             <LoginContentWrapper>
                 <Form onSubmit={isSignup ? loginHandler : signupHandler}>
@@ -141,21 +139,20 @@ return (
                         </OptionsWrapper>
                     )}
                     <Input  onChange={(e) => setEmail(e.target.value)}
-                                    ref={inputRef}
-                                    type="email"
-                                    placeholder="Email"
-                                    required
+                            ref={inputRef}
+                            type="email"
+                            placeholder="Email"
+                            required
                     />
-                    <Input   onChange={(e) => setPassword(e.target.value)}
-                                        type="password"
-                                        required
-                                        placeholder="Password"
+                    <Input  onChange={(e) => setPassword(e.target.value)}
+                            type="password"
+                            required
+                            placeholder="Password"
                     />
                     <div disabled={isSignup? true: false}>
                         <Input  onChange={(e) => setUsername(e.target.value)}
-                                    type="username"
-                                    
-                                    placeholder="Username"
+                                type="username"
+                                placeholder="Username"
                         />
                     </div>
                     <SubmitButton>
@@ -184,7 +181,7 @@ const ModalBackground = styled.div`
     box-shadow: 0 4px 6px rgb(32 33 36 / 28%);
 `;
 const Wrapper = styled.div`
-    margin-top: 200px;
+    align-self: center;
     background: var(--color-powder-blue);
     width: 800px;
     height: 500px;
@@ -209,12 +206,12 @@ const Form = styled.form`
 `;
 const CaptionForGreeting = styled.span`
     text-transform: uppercase;
-    color: gray;
-    margin-bottom: 50px;
-    font-size: 0.8rem;
+    color: var(--color-fandango-pink);
+    margin: 25px;
+    font-size: 20px;
 `;
 const OptionsWrapper = styled.div`
-    margin-bottom: 20px;
+    margin: 10px;
 `;
 const CaptionForLogin = styled.span`
     margin-right: 10px;
@@ -234,7 +231,7 @@ const Register = styled.span`
     }
 `;
 const Input = styled.input`
-    margin-bottom: 10px;
+    margin: 5px;
     border: none;
     border-radius: 5px;
     padding: 0 10px;
@@ -242,18 +239,36 @@ const Input = styled.input`
     width: 18rem;
 `;
 const SubmitButton = styled.button`
-    text-transform: uppercase;
-    background: var(--color-green-blue);
-    margin-bottom: 20px;
-    border: none;
-    border-radius: 5px;
-    color: #fff;
-    height: 30px;
-    width: 18rem;
-    margin-bottom: 40px;
-    cursor: pointer;
-    &:hover {
-        border: black 2px solid;
+    padding: 20px 40px;
+    margin: 10px;
+	background: none;
+	border: none;
+	position: relative;
+	text-transform: uppercase;
+	font-weight: bold;
+    color: var(--color-green-blue);
+	letter-spacing: 3px;
+	cursor: pointer;
+	&:after, &:before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		border: 2px solid var(--color-green-blue);
+		transition: transform .2s ;
+    }
+	&:after {
+		transform: translate(3px, 3px)	
+    }
+	&:before {
+		transform: translate(-3px, -3px)
+    }
+	&:hover {
+		&:after, &:before {
+			transform: translate(0)
+        }
     }
 `
 

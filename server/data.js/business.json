@@ -10,8 +10,8 @@
         "chiropractor": null,
         "osteopath": null,
         "rating": 5,
-        "comments": [{"id": "09876543", "user": "Hello Kitty", "msg": "Alexi helped me a lot with my muted mouth."},
-                    {"id": "09827738", "user": "Elsa", "msg": "I did acupuncture for a month. And now the the cold never bother me anymore."}]
+        "comments": [{"id": "09876543", "user": "Hello Kitty", "rating": 5, "msg": "Alexi helped me a lot with my muted mouth."},
+                    {"id": "09827738", "user": "Elsa", "rating": 5, "msg": "I did acupuncture for a month. And now the the cold never bother me anymore."}]
     },
     {
         "_id": 100101,
@@ -24,8 +24,8 @@
         "chiropractor": ["Antoine Dauphin", "Sonia Bachir Cherif", "Felix Shum"],
         "osteopath": null,
         "rating": 4,
-        "comments": [{"id": "09876047", "user": "Quasimodo", "msg": "Felix help my hunchback, amazing!"},
-                    {"id": "09827294", "user": "Gollum", "msg": "I feel like I am taller after the treatment and now I can go get the ring again."}]
+        "comments": [{"id": "09876047", "user": "Quasimodo", "rating": 5, "msg": "Felix help my hunchback, amazing!"},
+                    {"id": "09827294", "user": "Gollum", "rating": 4, "msg": "I feel like I am taller after the treatment and now I can go get the ring again."}]
       },
       {
         "_id": 100102,
@@ -37,7 +37,7 @@
         "physiotherapist": null,
         "chiropractor": null,
         "osteopath": ["Pierre Gagnon"],
-        "rating": 3,
+        "rating": null,
         "comments": null
       },
       {
@@ -51,8 +51,8 @@
         "chiropractor": null,
         "osteopath": ["Ralph Tohmé"],
         "rating": 2,
-        "comments": [{"id": "09876090", "user": "Doraemon", "msg": "I wish I have a time machine and skip the waiting time."},
-          {"id": "09827224", "user": "Cruella", "msg": "I've spent 5 mins in the waiting room. It's TOO lONG!!!! I am not coming back!"}]
+        "comments": [{"id": "09876090", "user": "Doraemon", "rating": 2,"msg": "I wish I have a time machine and skip the waiting time."},
+          {"id": "09827224", "user": "Cruella", "rating": 2, "msg": "I've spent 5 mins in the waiting room. It's TOO lONG!!!! I am not coming back!"}]
       },
       {
         "_id": 100104,
@@ -64,7 +64,7 @@
         "physiotherapist": null,
         "chiropractor": ["Natasha Hayden"],
         "osteopath": null,
-        "rating": 5,
+        "rating": 0,
         "comments": null
       },
       {
@@ -77,7 +77,7 @@
         "physiotherapist": ["Geogre Demirakos"],
         "chiropractor": null,
         "osteopath": ["Ghassen Abid"],
-        "rating": 4,
+        "rating": 0,
         "comments": null
       },
       {
@@ -91,7 +91,7 @@
         "chiropractor": null,
         "osteopath": null,
         "rating": 5,
-        "comments": [{"id": "09879165", "user": "Peppa Pig", "msg": "Thuy is so nice even I am a little piggy, oink!"}]
+        "comments": [{"id": "09879165", "user": "Peppa Pig", "rating": 5, "msg": "Thuy is so nice even I am a little piggy, oink!"}]
       },
       {
         "_id": 100107,
@@ -103,7 +103,7 @@
         "physiotherapist": null,
         "chiropractor": null,
         "osteopath": null,
-        "rating": 5,
+        "rating": 0,
         "comments": null
       },
       {
@@ -117,7 +117,7 @@
         "chiropractor": null,
         "osteopath": ["Asrafil Goolam-Hossen"],
         "rating": 5,
-        "comments": [{"id": "09876920", "user": "Donald Duck", "msg": "My voice is wayyy better after oetsopath treatment, quack quack!"}]
+        "comments": [{"id": "09876920", "user": "Donald Duck", "rating": 5, "msg": "My voice is wayyy better after oetsopath treatment, quack quack!"}]
       },
       {
         "_id": 100109,
@@ -129,8 +129,8 @@
         "physiotherapist": ["Alexis M. Léveillé", "Teresa Rassenti", "Magali Scheubel"],
         "chiropractor": null,
         "osteopath": ["Aurore Barea", "Alain Barriol", "Stephen Devlin", "Maïly Dubeau"],
-        "rating": 3,
-        "comments": null
+        "rating": 5,
+        "comments": [{"id": "09876057", "user": "Winnie the pooh", "rating": 5, "msg": "They gave me honey as a treat! Love it."}]
       },
       {
         "_id": 100110,
@@ -142,8 +142,8 @@
         "physiotherapist": ["Nurit Roth King", "Francis Zavala"],
         "chiropractor": ["Thanh-My Patricia Ho"],
         "osteopath": null,
-        "rating": 4,
-        "comments": null
+        "rating": 2,
+        "comments": [{"id": "09873296", "user": "Ironman", "rating": 2, "msg": "There is no parking for my war machine!"}]
       },
       {
         "_id": 100111,
@@ -155,8 +155,8 @@
         "physiotherapist": ["Steve Procter"],
         "chiropractor": null,
         "osteopath": null,
-        "rating": 4,
-        "comments": null
+        "rating": 5,
+        "comments": [{"id": "09283659", "user": "Steve Job", "rating": 5, "msg": "This Steve helps me a lot. I like steve!"}]
       },
       {
         "_id": 100112,
@@ -168,7 +168,7 @@
         "physiotherapist": null,
         "chiropractor": null,
         "osteopath": ["Alexis Martin", "Julia Duplessy", "Charlotte Coulot" ],
-        "rating": 3,
+        "rating": 0,
         "comments": null
       },
       {
@@ -182,7 +182,7 @@
         "chiropractor": ["Lydia Ouldchikh"],
         "osteopath": null,
         "rating": 5,
-        "comments": null
+        "comments": [{"id": "08566929", "user": "Sponge Bob", "rating": 5, "msg": "I love that I can do my squeezy dance now."}]
       },
       {
         "_id": 100114,
@@ -194,7 +194,7 @@
         "physiotherapist": null,
         "chiropractor": ["Christine St-Louis"],
         "osteopath": null,
-        "rating": 5,
+        "rating": 0,
         "comments": null
       },
       {
@@ -207,7 +207,7 @@
         "physiotherapist": null,
         "chiropractor": ["Synergie Laënnec"],
         "osteopath": null,
-        "rating": 3,
+        "rating": 0,
         "comments": null
       },
       {
@@ -220,8 +220,8 @@
         "physiotherapist": null,
         "chiropractor": ["Annie Lalonde", "Laurence Delisle", "Marc-Antoine Laquerre"],
         "osteopath": ["Julie Couture-Tétreault", "Thibault Cavrois", "Maude Cavanagh"],
-        "rating": 4,
-        "comments": null
+        "rating": 2,
+        "comments": [{"id": "09946286", "user": "Amber Heard", "rating": 2, "msg": "I hope I can be prettier but they cannt help me!"}]
       },
       {
         "_id": 100117,
@@ -233,7 +233,7 @@
         "physiotherapist": ["Cara Lee", "Brittany Frank"],
         "chiropractor": null,
         "osteopath": null,
-        "rating": 2,
+        "rating": 0,
         "comments": null
       }
 ]
