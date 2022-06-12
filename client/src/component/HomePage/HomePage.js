@@ -1,30 +1,18 @@
-import { useContext, useEffect } from "react";
-import { AppContext } from "../../AppContext.js";
+import styled from "styled-components"
 import Map from "../Map/Map"
+import FeedbackShow from "./FeedbackShow"
 
 const HomePage = () => {
 
-// const { actions: {
-//     getHomepageData,
-//         } } = useContext(AppContext)
-
-//     useEffect(() => {
-//         fetch("/api/all-business")
-        
-//             .then((res) => res.json())
-//             .then((data) => { 
-//                 getHomepageData(data.data)
-//             })
-//             .catch((error) => {
-//                 console.log("Error", error);
-//             });
-//     }, []);
-
     return (
-        <>
-        <Map />
-        </>
+        <Div>
+            <Map />
+            <FeedbackShow />
+        </Div>
     )
 }
-
+const Div = styled.div`
+    display: flex;
+    flex-direction: column;
+`
     export default HomePage

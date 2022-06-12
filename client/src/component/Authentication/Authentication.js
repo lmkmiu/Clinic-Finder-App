@@ -56,8 +56,8 @@ const Authentication = () => {
                 username
                 );
                 
-        setNewUser({ email, password, _id: result.user.uid, username });
-        setCurrentUser({ email, password, _id: result.user.uid, username });
+        await setNewUser({ email, password, _id: result.user.uid, username });
+        await setCurrentUser({ email, password, _id: result.user.uid, username });
         // Save user id into session storage for keeping user login state
         await window.sessionStorage.setItem("userId", result.user.uid);
 

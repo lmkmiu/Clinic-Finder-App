@@ -19,7 +19,7 @@ const Map = () => {
     if (!isLoaded) return "Loading Maps"; 
 
     const mapContainerStyle = {
-        height: 600, 
+        height: 500, 
         width: '100%', 
         display: 'flex', 
         flexFlow: 'row nowrap', 

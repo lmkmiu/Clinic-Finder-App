@@ -20,7 +20,7 @@ const reducer = (state, action) => {
         case "get-homepage-data" : {
             return {
                 ...state,
-                homePageLoad: "HomeLoaded",
+                homePageLoad: true,
                 homePageData: action.data
             }
         } 
