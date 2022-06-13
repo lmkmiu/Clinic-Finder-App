@@ -3,13 +3,6 @@ import { createContext, useState, useEffect } from "react";
 export const UserContext = createContext(null);
 
 const UserProvider = ({ children }) => {
-  const [newUser, setNewUser] = useState({
-    logInName: null,
-    email: null,
-    password: null,
-    _id: null,
-    username: null
-  });
   const [currentUser, setCurrentUser] = useState({
     email: null,
     password: null,
@@ -29,8 +22,6 @@ const UserProvider = ({ children }) => {
   return (
     <UserContext.Provider
       value={{
-        newUser,
-        setNewUser,
         currentUser,
         setCurrentUser,
         setIsLoggedin,

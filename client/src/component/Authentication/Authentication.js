@@ -18,9 +18,7 @@ const Authentication = () => {
     const [password, setPassword] = useState(null);
     const [isSignup, setIsSignup] = useState(true);
     const [username, setUsername] = useState(null)
-    const { newUser, 
-            setCurrentUser, 
-            setNewUser,    
+    const { setCurrentUser,   
             isLoggedin, 
             setIsLoggedin } = useContext(UserContext);
 
@@ -56,29 +54,26 @@ const Authentication = () => {
                 username
                 );
                 
-        await setNewUser({ email, password, _id: result.user.uid, username });
-        await setCurrentUser({ email, password, _id: result.user.uid, username });
-        // Save user id into session storage for keeping user login state
-        await window.sessionStorage.setItem("userId", result.user.uid);
+                
+                // .POST to save new user info to mongoDb users collection
 
-         // .POST to save new user info to mongoDb users collection
-            const fetchDate = async () => {
             await fetch("/api/new-users", {
-                    method: "POST",
-                    body: JSON.stringify({ ...newUser }),
-                    headers: {  Accept: "application/json",
-                                        "Content-Type": "application/json",
-                            },
-                    })
-                .then((res) => res.json())
-                .then((data) => { console.log(data)}) 
-        };
-        if (newUser) {
-            console.log(newUser) 
-            fetchDate();
-        }
-        
-
+                        method: "POST",
+                        body: JSON.stringify({ email, password, _id: result.user.uid, username }),
+                        headers: {  Accept: "application/json",
+                                            "Content-Type": "application/json",
+                                },
+                        })
+                    .then((res) => res.json())
+                    .then((data) => { 
+                        if (data.status === 200) {
+                            setCurrentUser({ email, password, _id: result.user.uid, username });
+                            // Save user id into session storage for keeping user login state
+                            window.sessionStorage.setItem("userId", result.user.uid);
+                        }
+            }) 
+                
+                
       // Change Login state
             onAuthStateChanged(auth, (user) => {
                 if (user) {

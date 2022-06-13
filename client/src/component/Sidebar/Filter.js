@@ -107,9 +107,9 @@ const Filter = () => {
                 </label>
             </Div>
             <BtnDiv>
-                <ResetBtn   type="button"
+                <ResetBtn   type="reset"
                             onClick={resetHandler} 
-                            value="Reset form">
+                            value="Reset">
                     Reset
                 </ResetBtn>
             </BtnDiv>

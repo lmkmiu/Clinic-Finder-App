@@ -7,7 +7,7 @@ import styled from 'styled-components';
 
 const FeedbackShow = () => {
 
-const { state: { homePageData, homePageLoad },
+const { state: { homePageData },
         actions: { getHomepageData } } = useContext(AppContext)
 
     useEffect(() => {
@@ -24,8 +24,7 @@ const { state: { homePageData, homePageLoad },
 
     // get all comments from all business
     let commentArray = []
-    if (homePageLoad) {
-        homePageData.forEach((item) => {
+    {homePageData?.forEach((item) => {
             if (item.comments !== null) {
                 commentArray = commentArray.concat(item.comments)
             }
@@ -34,9 +33,8 @@ const { state: { homePageData, homePageLoad },
 
     return (
         <Div>
-            {homePageLoad && (
             <Carousel showArrows={true} showThumbs={false}> 
-                {commentArray.map((feedback)=> {
+                {commentArray?.map((feedback)=> {
                     return (
                         <Comment key={feedback.id}>
                             <p> {feedback.msg} </p>
@@ -49,7 +47,6 @@ const { state: { homePageData, homePageLoad },
                     })
                 }
             </Carousel>
-            )}
         </Div>
     )
 }

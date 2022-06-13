@@ -20,7 +20,7 @@ const { state: {ratingValue} } = useContext(AppContext)
             toast.warn("😱 Opps, looks like you forgot to log in.", {theme: "colored"})
         }
         // check if user gae a start rating first
-        if (!ratingValue) {
+        else if (!ratingValue) {
             toast.warn("⭐️ Please give me a rating ⭐️", {theme: "colored"})
 
         } else {
@@ -35,13 +35,14 @@ const { state: {ratingValue} } = useContext(AppContext)
             })
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data);
+                    if (data.status === 200) {
+                        //set the input area back to empty
+                        setUserInput("")
+                        toast.success("Comment added", {
+                            theme: "colored"
+                        })
+                    }
                 })
-            //set the input area back to empty
-            setUserInput("")
-            toast.success("Comment added", {
-                theme: "colored"
-            })
         }
     }
 

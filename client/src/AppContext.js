@@ -3,9 +3,7 @@ import { createContext, useReducer } from "react";
 export const AppContext = createContext(null);
 
 const initialState = {
-    homePageLoad: null,
     homePageData: null,
-    filterLoad : null,
     filterData: null,
     selectedClinic: null,
     commentsLoad: false,
@@ -20,14 +18,12 @@ const reducer = (state, action) => {
         case "get-homepage-data" : {
             return {
                 ...state,
-                homePageLoad: true,
                 homePageData: action.data
             }
         } 
         case "get-filtered-data" : {
             return {
                 ...state,
-                filterLoad: "filterLoad",
                 filterData: action.data
             }
         }

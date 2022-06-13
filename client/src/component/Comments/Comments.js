@@ -13,7 +13,6 @@ const Comments = () => {
     const id = JSON.parse(window.sessionStorage.getItem("clinicId"))
     const [ clinic , setClinic ] = useState(null)
     const [ load, setLoad ] = useState(null)
-    // const [ratingValue, setRatingValue] = useState(null)
     const { state: {ratingValue} , actions: {setRatingValue} } = useContext(AppContext)
 
     useEffect(() => {
@@ -31,7 +30,6 @@ const Comments = () => {
     const handleRating = (rate) => {
         setRatingValue(rate * 5 / 100)
     }
-
     
     return (
         <Wrapper>

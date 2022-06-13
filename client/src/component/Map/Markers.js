@@ -15,8 +15,7 @@ const Markers = () => {
     }
     return (
         <>
-        {filterLoad ? (
-            filterData.map(place => (
+        {filterData?.map(place => (
             
             <Marker key={257199279 * place._id}
                     position={{ lat: place.geolocation.lat, 
@@ -25,7 +24,8 @@ const Markers = () => {
                     icon={{ url: "/marker.png",
                             scaledSize: new window.google.maps.Size(30,30)}}
                             animation={window.google.maps.Animation.DROP}
-                    />))): <h1>loading</h1>}
+                    />))
+                }
             
             {selectedClinic && (
                 <InfoWindow position={{ lat: selectedClinic.geolocation.lat, 

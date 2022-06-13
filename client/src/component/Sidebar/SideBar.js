@@ -16,10 +16,16 @@ const SideBar = () => {
     // get user name from sessionStorage and db
     useEffect(() => {
 
-        fetch(`/api/user/${id}`)
+        if(id){
+            fetch(`/api/user/${id}`)
             .then((res) => res.json())
-            .then((data) => setCurrentUser(data.data))
+            .then((data) => {
+                setCurrentUser(data.data)
+            }
+            )
         .catch((err) => { console.log(err)})
+        }
+        
 
     }, [id]);
 
@@ -42,7 +48,7 @@ const SideBar = () => {
                 </Link>
                 { isLoggedin ? (<>
                     <Username>
-                        Hello! {currentUser.username}
+                        Hello! {currentUser?.username}
                     </Username>
                     <SignInButton onClick={loginHandler}>
                         Logout
