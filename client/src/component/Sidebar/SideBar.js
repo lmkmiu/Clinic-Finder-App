@@ -26,7 +26,6 @@ const SideBar = () => {
         .catch((err) => { console.log(err)})
         }
         
-
     }, [id]);
 
 

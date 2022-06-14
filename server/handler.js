@@ -21,7 +21,7 @@ const getAllBusiness = async (req, res) => {
     await client.connect();
     const db = await client.db("Clinic");
     const data = await db.collection("business").find().toArray();
-    // console.log(data)
+
     res.status(200).json({
       status: 200,
       data: data,
@@ -205,7 +205,7 @@ const getSingleUser = async (req, res) => {
   client.close();
 };
 //////////////////////////////////////////////////////////////////
-// delete comments by admin
+// delete comments by admin, leave here for future development
 // const deleteComment = async (req, res) => {
 //   const { clinicId, commentId } = req.body;
 //   console.log(clinicId),

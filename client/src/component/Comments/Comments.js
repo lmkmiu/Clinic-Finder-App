@@ -50,10 +50,10 @@ const Comments = () => {
                         <H1>{clinic?.Name}</H1>
                         <Rating initialValue={clinic?.rating} />
                     </Comment>
-                    {clinic.comments && (
+                    {clinic?.comments && (
                         <CommentsDiv>
                             <H2>Comments</H2>
-                            {clinic.comments.map((item) => {
+                            {clinic?.comments.map((item) => {
                                 return (
                                     <Comment key={204365567870 *clinic._id}>
                                         <p> {item.msg} </p>

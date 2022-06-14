@@ -6,14 +6,12 @@ const initialState = {
     homePageData: null,
     filterData: null,
     selectedClinic: null,
-    commentsData: [],
     ratingValue: null,
     reload: false
 }
 
 const reducer = (state, action) => {
 
-    // console.log(action.data)
     switch(action.type) {
         case "get-homepage-data" : {
             return {

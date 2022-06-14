@@ -33,8 +33,8 @@ const SingleMap = ({ clinic }) => {
         boxShadow: "0 4px 6px rgb(32 33 36 / 28%)"
     }
     const center = {
-        lat : clinic.geolocation.lat,
-        lng: clinic.geolocation.lng
+        lat : clinic?.geolocation.lat,
+        lng: clinic?.geolocation.lng
     }
     const options = {
         styles: mapStyles,
