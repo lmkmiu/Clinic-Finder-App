@@ -8,8 +8,7 @@ import { useNavigate } from 'react-router-dom'
 import { AppContext } from '../../AppContext';
 
 const SideDetail = () => {
-    const { state: { selectedClinic },
-            actions: {  }} = useContext(AppContext)
+    const { state: { selectedClinic }} = useContext(AppContext)
     const navigate = useNavigate();
 
     // save the selected clinic ID to session storage and redirect to clinic detail page
@@ -72,7 +71,7 @@ const SideDetail = () => {
                         </CatDiv>}
                     </Right>
                     <Btn onClick={handleCLick}>
-                        Leave your review
+                        Reviews
                     </Btn>
                 </>)}
         </Wrapper>
@@ -92,15 +91,6 @@ const Right = styled.div`
 const H1 = styled.h1`
     padding: 25px;
     font-size: 30px;
-`
-const Stars = styled.div`
-    display: flex;
-    justify-content: space-evenly;
-    padding: 20px;
-    margin: 10px;
-    border: 4px solid var(--color-glitter);
-    border-radius: 5px;
-    box-shadow: 0 4px 6px rgb(32 33 36 / 28%);
 `
 const InfoDiv = styled.div`
     display: flex;

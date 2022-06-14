@@ -44,9 +44,7 @@ const Authentication = () => {
     // And when user successfully sign up, the user will be logged in automatically.
         e.preventDefault();
         try {
-            toast.success("🦄 Welcome!!", {
-                theme: "colored"
-            })
+            
             const result = await createUserWithEmailAndPassword(
                 auth,
                 email,
@@ -59,7 +57,7 @@ const Authentication = () => {
 
             await fetch("/api/new-users", {
                         method: "POST",
-                        body: JSON.stringify({ email, password, _id: result.user.uid, username }),
+                        body: JSON.stringify({ email, password, _id: result.user.uid, username, role: "regular" }),
                         headers: {  Accept: "application/json",
                                             "Content-Type": "application/json",
                                 },
@@ -78,6 +76,9 @@ const Authentication = () => {
             onAuthStateChanged(auth, (user) => {
                 if (user) {
                     setIsLoggedin(true);
+                    toast.success("🦄 Welcome!!", {
+                        theme: "colored"
+                    })
                 } else setIsLoggedin(false);
             });
         } catch (err) {
@@ -90,9 +91,7 @@ const Authentication = () => {
 // handler for logIn 
     const loginHandler = async (e) => {
         e.preventDefault();
-    try { toast.success("🦄 Welcome!!", {
-            theme: "colored"
-        })
+    try { 
       // Firebase auth. checks user validation. (is member?)
         const result = await signInWithEmailAndPassword(auth, email, password);
         await window.sessionStorage.setItem("userId", result.user.uid)
@@ -101,6 +100,9 @@ const Authentication = () => {
             onAuthStateChanged(auth, (user) => {
                 if (user) {
                     setIsLoggedin(true);
+                    toast.success("🦄 Welcome!!", {
+                        theme: "colored"
+                    })
                 } else setIsLoggedin(false);
             });
         } catch (err) {

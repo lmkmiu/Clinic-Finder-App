@@ -1,7 +1,7 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-const LoginConfirm = ({ user }) => {
+const LoginConfirm = ({ }) => {
     const navigate = useNavigate(); // react-router-dom 6.3.0 useNavigate instead of useHistory
 
   return (

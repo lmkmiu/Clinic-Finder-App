@@ -13,7 +13,7 @@ const Comments = () => {
     const id = JSON.parse(window.sessionStorage.getItem("clinicId"))
     const [ clinic , setClinic ] = useState(null)
     const [ load, setLoad ] = useState(null)
-    const { state: {ratingValue} , actions: {setRatingValue} } = useContext(AppContext)
+    const { state: {ratingValue, reload } , actions: {setRatingValue} } = useContext(AppContext)
 
     useEffect(() => {
         fetch(`/api/business/${id}`)
@@ -25,7 +25,7 @@ const Comments = () => {
             .catch((error) => {
                 console.log("Error", error);
             });
-    }, [id])
+    }, [id, reload])
 
     const handleRating = (rate) => {
         setRatingValue(rate * 5 / 100)
@@ -46,7 +46,10 @@ const Comments = () => {
                 ) : (<>
                 <SingleMap clinic={clinic} /> 
                 <Div>
-                    <H1>{clinic.Name}</H1>
+                    <Comment> 
+                        <H1>{clinic?.Name}</H1>
+                        <Rating initialValue={clinic?.rating} />
+                    </Comment>
                     {clinic.comments && (
                         <CommentsDiv>
                             <H2>Comments</H2>

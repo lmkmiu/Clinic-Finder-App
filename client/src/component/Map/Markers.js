@@ -1,10 +1,9 @@
-import styled from "styled-components";
 import { InfoWindow, Marker } from "@react-google-maps/api";
 import { useContext } from "react";
 import { AppContext } from "../../AppContext";
 
 const Markers = () => {
-    const { state: { filterLoad, filterData, selectedClinic },
+    const { state: { filterData, selectedClinic },
             actions: { selectClinic }} = useContext(AppContext)
 
 

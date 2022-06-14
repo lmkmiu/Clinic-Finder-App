@@ -6,9 +6,9 @@ const initialState = {
     homePageData: null,
     filterData: null,
     selectedClinic: null,
-    commentsLoad: false,
     commentsData: [],
     ratingValue: null,
+    reload: false
 }
 
 const reducer = (state, action) => {
@@ -37,6 +37,12 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 ratingValue: action.data
+            }
+        }
+        case "set-reload" : {
+            return {
+                ...state,
+                reload: !state.reload
             }
         }
         
@@ -72,6 +78,12 @@ export const AppProvider = ({ children }) => {
             data
         })
     }
+    const setReload = (data) => {
+        dispatch({
+            type: "set-reload",
+            data
+        })
+    }
 
 
     return (
@@ -81,7 +93,8 @@ export const AppProvider = ({ children }) => {
                 getHomepageData,
                 getfilteredData, 
                 selectClinic,
-                setRatingValue
+                setRatingValue,
+                setReload
             }
         }}>
             {children}

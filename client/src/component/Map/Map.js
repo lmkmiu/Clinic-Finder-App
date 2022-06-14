@@ -4,16 +4,27 @@ import {    GoogleMap,
 import { mapStyles } from "./mapStyles";
 import Markers from "./Markers";
 import SideDetail from "../SideDetail/SideDetail";
+import MapSearch from "./MapSearch";
+import { useCallback, useRef } from "react";
 
 // import { formatRelative } from "date-fns";
-// const libraries = [ "places" ];
+const libraries = [ "places" ];
 
 const Map = () => {
     const { isLoaded, loadError 
     } = useJsApiLoader({
-        googleMapsApiKey: process.env.REACT_APP_GOOGLE_KEY
-        // libraries,
+        googleMapsApiKey: process.env.REACT_APP_GOOGLE_KEY,
+        libraries
     })
+    const mapRef = useRef();
+    const onMapLoad = useCallback((map) => {
+        mapRef.current = map
+    }, [])
+
+    const panTo = useCallback(({lat, lng}) => {
+        mapRef.current.panTo({lat, lng});
+        mapRef.current.setZoom(14);
+    }, [])
 
     if (loadError) return "Error loading maps";
     if (!isLoaded) return "Loading Maps"; 
@@ -43,11 +54,13 @@ const Map = () => {
         <Div>
             <Left>
                 <H1>Clinic Finder</H1>
+                <MapSearch panTo={panTo} />
                 <GoogleMap
                     mapContainerStyle={mapContainerStyle}
                     zoom={11}
                     center={center}
                     options={options}
+                    onLoad={onMapLoad}
                 >
                     <Markers />
                 </GoogleMap>

@@ -92,7 +92,7 @@ const filterBusiness = async (req, res) => {
       message: "something wrong",
     });
   }
-  //client.close();
+  // client.close();
 };
 //////////////////////////////////////////////////////////////////
 // get single business getSingleBusiness
@@ -134,11 +134,6 @@ const addComment = async (req, res) => {
     }
 
     const newRating = ((parseInt(ratingValue) + parseInt(business.rating))/totalComments)
-    console.log(parseInt(ratingValue))
-    console.log(parseInt(business.rating))
-    console.log(totalComments)
-    console.log(newRating, "newRating")
-
     const comment = { id: commentId, 
                       user: data.username, 
                       rating: parseInt(ratingValue), 
@@ -171,23 +166,13 @@ const addComment = async (req, res) => {
 //////////////////////////////////////////////////////////////////
 // adding new users
 const addNewUsers = async (req, res) => {
-  const { email, password, _id, username } = req.body;
-  const newUser = { email, password, _id, username };
-  console.log(email)
+  const { email, password, _id, username, role } = req.body;
+  const newUser = { email, password, _id, username, role };
 
   try {
     await client.connect();
     const db = client.db("Clinic");
 
-  // check if user email correct
-    // if (!email.includes("@")) {
-    //   return res.status(400).json({
-    //     status: 400,
-    //     success: "Invalid Email",
-    //   });
-    // }
-  // add new order in the new customerOrder collection
-    // else 
     await db.collection("users").insertOne(newUser);
 
     res
@@ -219,6 +204,32 @@ const getSingleUser = async (req, res) => {
   }
   client.close();
 };
+//////////////////////////////////////////////////////////////////
+// delete comments by admin
+// const deleteComment = async (req, res) => {
+//   const { clinicId, commentId } = req.body;
+//   console.log(clinicId),
+//   console.log(commentId)
+//   try {
+//     await client.connect();
+//     const db = await client.db("Clinic");
+//     const data = await db.collection("business").deleteOne(
+//                   { "_id.comment.id": commentId },
+//                   {
+//                     justOne: true, 
+//                   });
+//       res.status(200).json({
+//         status: 200,
+//         data: data,
+//       });
+//   } catch (err) {
+//       res.status(400).json({
+//         status: 400,
+//         message: "something wrong",
+//       });
+//   }
+//   client.close();
+// };
 
 module.exports = {
     getAllBusiness,
@@ -226,5 +237,6 @@ module.exports = {
     getSingleBusiness,
     addComment,
     addNewUsers,
-    getSingleUser
+    getSingleUser,
+    // deleteComment
   };

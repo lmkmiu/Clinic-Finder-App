@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { NavLink, useNavigate } from "react-router-dom"; 
 
 import Filter from "./Filter";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { UserContext } from "../Authentication/UserContext";
 
 

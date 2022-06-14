@@ -10,7 +10,8 @@ const [userInput, setUserInput] = useState("");
 const [char, setChar] = useState();
 const userId = window.sessionStorage.getItem("userId")
 const clinicId = parseInt(window.sessionStorage.getItem("clinicId"))
-const { state: {ratingValue} } = useContext(AppContext)
+const { state: {ratingValue, reload}, 
+        actions: { setReload } } = useContext(AppContext)
 
     const handleSubmit = (e) => {
         const currentUser = window.sessionStorage.getItem("userId")
@@ -41,6 +42,7 @@ const { state: {ratingValue} } = useContext(AppContext)
                         toast.success("Comment added", {
                             theme: "colored"
                         })
+                        setReload(!reload)
                     }
                 })
         }

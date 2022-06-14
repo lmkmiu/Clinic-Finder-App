@@ -3,13 +3,20 @@ import {    GoogleMap,
             useJsApiLoader,
             Marker } from "@react-google-maps/api";
 import { mapStyles } from "./mapStyles";
+import { useCallback, useRef } from "react";
+const libraries = [ "places" ];
 
 const SingleMap = ({ clinic }) => {
 
     const { isLoaded, loadError 
     } = useJsApiLoader({
-        googleMapsApiKey: process.env.REACT_APP_GOOGLE_KEY
+        googleMapsApiKey: process.env.REACT_APP_GOOGLE_KEY,
+        libraries
     })
+    const mapRef = useRef();
+    const onMapLoad = useCallback((map) => {
+        mapRef.current = map
+    }, [])
 
     if (loadError) return "Error loading maps";
     if (!isLoaded) return "Loading Maps"; 
@@ -42,6 +49,7 @@ const SingleMap = ({ clinic }) => {
                 zoom={14}
                 center={center}
                 options={options}
+                onLoad={onMapLoad}
             >
                 <Marker position={{ lat: clinic.geolocation.lat, 
                                     lng: clinic.geolocation.lng }}
