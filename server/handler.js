@@ -120,7 +120,7 @@ const getSingleBusiness = async (req, res) => {
 const addComment = async (req, res) => {
   const { userId, clinicId, userInput, ratingValue } = req.body
   const commentId = uuidv4()
-
+  
   try {
     await client.connect();
     const db = client.db("Clinic");
@@ -133,7 +133,7 @@ const addComment = async (req, res) => {
       totalComments = business.comments.length + 1
     }
 
-    const newRating = ((parseInt(ratingValue) + parseInt(business.rating))/totalComments)
+    const newRating = ((parseInt(ratingValue) + parseInt(business.rating)*business.comments.length)/totalComments)
     const comment = { id: commentId, 
                       user: data.username, 
                       rating: parseInt(ratingValue), 
@@ -206,30 +206,35 @@ const getSingleUser = async (req, res) => {
 };
 //////////////////////////////////////////////////////////////////
 // delete comments by admin, leave here for future development
-// const deleteComment = async (req, res) => {
-//   const { clinicId, commentId } = req.body;
-//   console.log(clinicId),
-//   console.log(commentId)
-//   try {
-//     await client.connect();
-//     const db = await client.db("Clinic");
-//     const data = await db.collection("business").deleteOne(
-//                   { "_id.comment.id": commentId },
-//                   {
-//                     justOne: true, 
-//                   });
-//       res.status(200).json({
-//         status: 200,
-//         data: data,
-//       });
-//   } catch (err) {
-//       res.status(400).json({
-//         status: 400,
-//         message: "something wrong",
-//       });
-//   }
-//   client.close();
-// };
+const deleteComment = async (req, res) => {
+  const { clinicId, commentId } = req.body;
+  try {
+    await client.connect();
+    const db = await client.db("Clinic");
+    const clinic = await db.collection("business").findOne({ _id: parseInt(clinicId)})
+    const badRating = clinic.comments.filter((comment) => comment.id === commentId)[0].rating
+    const newRating = ((clinic.rating * clinic.comments.length ) - badRating) / (clinic.comments.length - 1)
+    // delete the unwanted comment
+    await db.collection("business").updateOne(
+                  { _id: parseInt(clinicId) }, 
+                  { $pull: { "comments": { "id": commentId } } });
+    // update the new Rating
+    await db.collection("business").updateOne(
+                  { _id: parseInt(clinicId) }, 
+                  { $set: { rating: newRating } });
+    
+      res.status(200).json({
+        status: 200,
+        message: "comment deleted"
+      });
+  } catch (err) {
+      res.status(400).json({
+        status: 400,
+        message: "something wrong",
+      });
+  }
+  client.close();
+};
 
 module.exports = {
     getAllBusiness,
@@ -238,5 +243,5 @@ module.exports = {
     addComment,
     addNewUsers,
     getSingleUser,
-    // deleteComment
+    deleteComment
   };

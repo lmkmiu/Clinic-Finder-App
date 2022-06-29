@@ -10,7 +10,7 @@ const {
     addComment,
     addNewUsers,
     getSingleUser,
-    // deleteComment
+    deleteComment
 } = require("./handler");
 
 const PORT = 8000;
@@ -32,7 +32,7 @@ express()
   // get single user
   .get("/api/user/:id", getSingleUser)
   // delete comment by admin
-  // .delete("/api/delete-comment", deleteComment)
+  .patch("/api/delete-comment", deleteComment)
 
 
   // this is our catch all endpoint.
