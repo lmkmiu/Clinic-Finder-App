@@ -7,6 +7,7 @@ import InputComment from './InputComment.js'
 import SingleMap from "../Map/SingleMap.js"
 import { useContext, useEffect, useState } from 'react'
 import { AppContext } from '../../AppContext.js'
+import DeleteBtn from './DeleteBtn.js'
 
 const Comments = () => {
     // get selected clinic ID and fetch single clinic from server
@@ -55,12 +56,13 @@ const Comments = () => {
                             <H2>Comments</H2>
                             {clinic?.comments.map((item) => {
                                 return (
-                                    <Comment key={204365567870 *clinic._id}>
+                                    <Comment key={item.id}>
                                         <p> {item.msg} </p>
                                         <Rating initialValue={item.rating}
                                                 fillColorArray={['#f17a45', '#f19745', '#f1a545', '#f1b345', '#f1d045']}
                                         />
                                         <User> -- {item.user} </User>
+                                        <DeleteBtn commentId={item.id}/>
                                     </Comment>
                                     )
                                 })}
