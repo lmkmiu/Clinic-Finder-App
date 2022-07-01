@@ -22,7 +22,12 @@ const DeleteBtn = ( {commentId} ) => {
 
     return (
         <>
-            <button onClick={handleDelete}>delete</button>
+            {role === "admin" ? 
+                (<button 
+                            onClick={handleDelete}>delete</button>  
+                ): (
+                    <></>
+                ) }
         </>
     )
 }
